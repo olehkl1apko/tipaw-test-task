@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "jsxImportSource": "@emotion/react",
+    "moduleResolution": "node",
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "allowUnusedLabels": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "**/node_modules/*", "**/build/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
