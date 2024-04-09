@@ -7,6 +7,11 @@ export const HeaderContainer = styled.div`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
   padding: 12px 24px;
+
+  @media screen and (max-width: 767px) {
+    padding: 12px 20px;
+    gap: 16px;
+  }
 `;
 
 export const Logo = styled.div`
@@ -14,6 +19,7 @@ export const Logo = styled.div`
   line-height: 1.4;
   font-weight: 600;
   color: ${({ theme }) => theme.color.dark.tint};
+  white-space: nowrap;
 `;
 
 export const Navbar = styled.div`
@@ -21,6 +27,10 @@ export const Navbar = styled.div`
   flex-direction: row;
   gap: 38px;
   align-items: center;
+
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
 `;
 
 export const Weekday = styled.div`
@@ -32,6 +42,10 @@ export const Weekday = styled.div`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.1;
+
+  @media screen and (max-width: 767px) {
+    gap: 4px;
+  }
 `;
 
 export const Nl = styled.span`
@@ -65,4 +79,9 @@ export const UserPhoto = styled.div`
 
 export const UserName = styled.span`
   margin-right: 16px;
+  white-space: nowrap;
+
+  @media screen and (max-width: 767px) {
+    margin-right: 4px;
+  }
 `;

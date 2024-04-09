@@ -10,6 +10,7 @@ export const AnnouncementsContainer = styled.div`
   justify-content: space-between;
   padding: 40px;
   gap: 32px;
+  border: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
 `;
 
 export const Wrapper = styled.div`
@@ -83,4 +84,8 @@ export const Content = styled.p`
   font-weight: 400;
   line-height: 1.5;
   padding: 0px 24px 16px 24px;
+
+  @media screen and (max-width: 425px) {
+    font-size: 14px;
+  }
 `;

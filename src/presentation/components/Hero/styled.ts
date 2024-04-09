@@ -16,7 +16,14 @@ export const CompletedWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 40px;
+  gap: 40px;
   border-bottom: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+  }
 `;
 
 export const Notification = styled.div`
@@ -79,6 +86,10 @@ export const ProgressBar = styled.div`
   height: 8px;
   border-radius: 2px;
   background-color: ${({ theme }) => theme.color.medium.default};
+
+  @media screen and (max-width: 424px) {
+    width: 48px;
+  }
 `;
 
 export const ProgressBarFilled = styled.div`
@@ -86,14 +97,24 @@ export const ProgressBarFilled = styled.div`
   height: 8px;
   border-radius: 2px;
   background-color: ${({ theme }) => theme.color.green.default};
+
+  @media screen and (max-width: 425px) {
+    width: 48px;
+  }
 `;
 
 export const ProgressContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
   padding: 40px;
+
+  @media screen and (max-width: 425px) {
+    justify-content: center;
+  }
 `;
 
 export const ProgressItem = styled.div`
@@ -101,6 +122,7 @@ export const ProgressItem = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+  min-width: 224px;
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
   box-shadow: -1px 3px 16px 0 ${({ theme }) => theme.color.medium.shadow};

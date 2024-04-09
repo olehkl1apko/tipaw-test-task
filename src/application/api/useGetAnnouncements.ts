@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { AnnouncementData } from "../../../../presentation/pages";
+import { AnnouncementData } from "../../presentation/pages/HomePage/types";
 
 export const useGetAnnouncements = () => {
   const announcements = useMemo(() => {

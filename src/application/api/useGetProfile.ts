@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ProfileData } from "../../../../presentation/pages/HomePage/types";
+import { ProfileData } from "../../presentation/pages/HomePage/types";
 
 export const useGetProfile = () => {
   const profile = useMemo(() => {

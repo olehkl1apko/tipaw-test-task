@@ -3,7 +3,7 @@ import { BiBell, BiChevronDown } from "react-icons/bi";
 import moment from "moment";
 
 import * as Styled from "./styled";
-import { useGetProfile } from "../../../application/pages/HomePageController/api/useGetProfile";
+import { useGetProfile } from "../../../application/api/useGetProfile";
 
 const Header: FC = () => {
   const { profile } = useGetProfile();

@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
 
 import * as Styled from "./styled";
-import { useGetProfile } from "../../../application/pages/HomePageController/api/useGetProfile";
+import { useGetProfile } from "../../../application/api/useGetProfile";
 
 const Hero: FC = () => {
   const { profile } = useGetProfile();

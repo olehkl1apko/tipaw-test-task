@@ -5,7 +5,7 @@ import { useTheme } from "@emotion/react";
 import moment from "moment";
 
 import * as Styled from "./styled";
-import { useGetAnnouncements } from "../../../application/pages/HomePageController/api/useGetAnnouncements";
+import { useGetAnnouncements } from "../../../application/api/useGetAnnouncements";
 
 const Announcements: FC = () => {
   const { announcements } = useGetAnnouncements();
