@@ -26,7 +26,7 @@ export const Notification = styled.div`
   gap: 16px;
 `;
 
-export const SuccessMessage = styled.span<SuccessMessageProps>`
+export const SuccessMessage = styled.h3<SuccessMessageProps>`
   color: ${({ theme, isProfileCompleted }) =>
     isProfileCompleted ? theme.color.blue.default : theme.color.red.glass};
   font-size: 18px;

@@ -3,8 +3,7 @@ import { FC, lazy, Suspense } from "react";
 import { ThemeProvider } from "@emotion/react";
 
 import { theme } from "./theme";
-
-const HomePageController = lazy(() => import("./pages/HomePageController"));
+const HomePage = lazy(() => import("../presentation/pages/HomePage"));
 
 export const AppController: FC = () => {
   return (
@@ -15,7 +14,7 @@ export const AppController: FC = () => {
             path="/"
             element={
               <Suspense fallback={<div>Loading...</div>}>
-                <HomePageController />
+                <HomePage />
               </Suspense>
             }
           />
