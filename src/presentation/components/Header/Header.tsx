@@ -1,14 +1,13 @@
+import { FC } from "react";
 import { BiBell, BiChevronDown } from "react-icons/bi";
 import moment from "moment";
 
 import * as Styled from "./styled";
-import { ProfileData } from "../../pages/HomePage/types";
+import { useGetProfile } from "../../../application/pages/HomePageController/api/useGetProfile";
 
-type Props = {
-  profile: ProfileData;
-};
+const Header: FC = () => {
+  const { profile } = useGetProfile();
 
-const Header = ({ profile }: Props) => {
   return (
     <Styled.HeaderContainer>
       <Styled.Logo>My Tipaw</Styled.Logo>

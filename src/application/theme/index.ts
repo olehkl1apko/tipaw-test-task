@@ -17,11 +17,13 @@ export const theme = {
       default: "#8c96a3",
       tint: "#c5ccd6",
       shade: "#616b77",
+      text: "#63637E",
     },
     dark: {
       default: "#707070",
       tint: "#20253F",
       shade: "#4d4d4d",
+      text: "#33384F",
     },
     purple: {
       default: "#7358a7",
