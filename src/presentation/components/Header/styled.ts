@@ -61,7 +61,6 @@ export const Dot = styled.div`
 
 export const UserInfo = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   color: ${({ theme }) => theme.color.medium.shade};
   font-size: 14px;
@@ -84,4 +83,21 @@ export const UserName = styled.span`
   @media screen and (max-width: 767px) {
     margin-right: 4px;
   }
+`;
+
+export const ChevronButton = styled.button``;
+
+export const Modal = styled.div`
+  position: absolute;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.blue.darkerBlue};
+  color: ${({ theme }) => theme.color.light.default};
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7;
+  gap: 4px;
 `;

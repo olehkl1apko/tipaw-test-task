@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BiBell, BiChevronDown } from "react-icons/bi";
 import moment from "moment";
 
@@ -6,6 +6,7 @@ import * as Styled from "./styled";
 import { useGetProfile } from "../../../application/api/useGetProfile";
 
 const Header: FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { profile } = useGetProfile();
 
   return (
@@ -23,7 +24,15 @@ const Header: FC = () => {
             <img src={profile.avatar} width="50px" alt="some guy with a dog" />
           </Styled.UserPhoto>
           <Styled.UserName>{profile.name}</Styled.UserName>
-          <BiChevronDown size={24} />
+          <Styled.ChevronButton onClick={() => setIsOpen(!isOpen)}>
+            <BiChevronDown size={24} />
+            {isOpen && (
+              <Styled.Modal>
+                <p>Profile</p>
+                <p>Logout</p>
+              </Styled.Modal>
+            )}
+          </Styled.ChevronButton>
         </Styled.UserInfo>
       </Styled.Navbar>
     </Styled.HeaderContainer>

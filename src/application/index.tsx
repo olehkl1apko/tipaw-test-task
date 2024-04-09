@@ -4,6 +4,8 @@ import { ThemeProvider } from "@emotion/react";
 
 import { theme } from "./theme";
 const HomePage = lazy(() => import("../presentation/pages/HomePage"));
+const Profile = lazy(() => import("../presentation/pages/Profile"));
+const Logout = lazy(() => import("../presentation/pages/Logout"));
 
 export const AppController: FC = () => {
   return (
@@ -15,6 +17,22 @@ export const AppController: FC = () => {
             element={
               <Suspense fallback={<div>Loading...</div>}>
                 <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Profile />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/logout"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Logout />
               </Suspense>
             }
           />
