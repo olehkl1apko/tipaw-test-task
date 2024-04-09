@@ -23,6 +23,7 @@ export const Logo = styled.div`
 `;
 
 export const Navbar = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 38px;
@@ -33,24 +34,22 @@ export const Navbar = styled.div`
   }
 `;
 
-export const Weekday = styled.div`
+export const Today = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
   align-items: center;
-  color: ${({ theme }) => theme.color.blue.tint};
+  color: ${({ theme }) => theme.color.medium.default};
   font-size: 14px;
   font-weight: 700;
   line-height: 1.1;
 
   @media screen and (max-width: 767px) {
-    gap: 4px;
+    display: none;
   }
 `;
 
-export const Nl = styled.span`
-  color: ${({ theme }) => theme.color.medium.shade};
-`;
+export const LanguageButton = styled.button``;
 
 export const Dot = styled.div`
   width: 4px;
@@ -89,15 +88,38 @@ export const ChevronButton = styled.button``;
 
 export const Modal = styled.div`
   position: absolute;
-  right: 20px;
+  right: 0%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.color.blue.darkerBlue};
+  background-color: ${({ theme }) => theme.color.medium.default};
   color: ${({ theme }) => theme.color.light.default};
-  padding: 8px;
+  padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.7;
   gap: 4px;
+`;
+
+export const ModalLanguage = styled.div`
+  position: absolute;
+  top: 80%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.green.default};
+  padding: 8px;
+  gap: 4px;
+
+  @media screen and (max-width: 767px) {
+    left: 10%;
+  }
+`;
+
+export const ModalLanguageBtn = styled.button`
+  color: ${({ theme }) => theme.color.light.default};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
 `;

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { FaCheck } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import { useGetProfile } from "../../../application/api/useGetProfile";
@@ -8,6 +9,8 @@ import { useGetProfile } from "../../../application/api/useGetProfile";
 const Hero: FC = () => {
   const { profile } = useGetProfile();
   const theme = useTheme();
+  const { t } = useTranslation();
+
   const isProfileCompleted = profile.globalProgress === 100;
 
   const progressBars = Array.from({ length: 5 }, (_, index) => {
@@ -21,38 +24,41 @@ const Hero: FC = () => {
   }).reverse();
 
   const progressList = [
-    { id: 1, title: "Verification", description: "You verified your account" },
+    {
+      id: 1,
+      title: t("verification"),
+      description: t("verificationDescription"),
+    },
     {
       id: 2,
-      title: "Profile picture",
-      description: "You added your profile picture",
+      title: t("profilePicture"),
+      description: t("profilePictureDescription"),
     },
-    { id: 3, title: "Parents", description: "You added the parents" },
-    { id: 4, title: "Litter", description: "Your created the litter" },
+    { id: 3, title: t("parents"), description: t("parentsDescription") },
+    { id: 4, title: t("litter"), description: t("litterDescription") },
   ];
-
   return (
     <Styled.HeroWrapper>
       <Styled.CompletedWrapper>
         {isProfileCompleted && (
           <Styled.Notification>
             <Styled.SuccessMessage isProfileCompleted={isProfileCompleted}>
-              You successfully complete your profile at Tipaw.
+              {t("successCompletionMessage")}
             </Styled.SuccessMessage>
-            <Styled.Message>Now you can use Tipaw for 100% 🎉 </Styled.Message>
+            <Styled.Message>{t("canUseTipaw")}</Styled.Message>
           </Styled.Notification>
         )}
         {!isProfileCompleted && (
           <Styled.Notification>
             <Styled.SuccessMessage isProfileCompleted={isProfileCompleted}>
-              You have not complete your profile yet.
+              {t("incompleteProfileMessage")}
             </Styled.SuccessMessage>
-            <Styled.Message>And can NOT use Tipaw for 100% </Styled.Message>
+            <Styled.Message>{t("cannotUseTipaw")}</Styled.Message>
           </Styled.Notification>
         )}
         <Styled.ProgressWrapper>
           <Styled.TextWrapper>
-            <Styled.Text>Profile Completed</Styled.Text>
+            <Styled.Text>{t("profileCompleted")}</Styled.Text>
             <Styled.Percentage>{profile.globalProgress}%</Styled.Percentage>
           </Styled.TextWrapper>
           <Styled.ProgressBarWrapper>{progressBars}</Styled.ProgressBarWrapper>

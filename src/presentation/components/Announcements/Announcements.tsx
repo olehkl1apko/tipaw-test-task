@@ -3,6 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import { useGetAnnouncements } from "../../../application/api/useGetAnnouncements";
@@ -10,6 +11,7 @@ import { useGetAnnouncements } from "../../../application/api/useGetAnnouncement
 const Announcements: FC = () => {
   const { announcements } = useGetAnnouncements();
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const [expandedAnnouncements, setExpandedAnnouncements] = useState<
     Record<string, boolean>
@@ -33,7 +35,7 @@ const Announcements: FC = () => {
   return (
     <Styled.AnnouncementsContainer>
       <Styled.Wrapper>
-        <Styled.Title>Announcements from TIPAW</Styled.Title>
+        <Styled.Title>{t("announcements")}</Styled.Title>
         <Styled.Dot></Styled.Dot>
       </Styled.Wrapper>
       <Styled.AnnouncementContainer>
