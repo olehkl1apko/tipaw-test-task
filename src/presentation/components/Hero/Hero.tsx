@@ -20,6 +20,17 @@ const Hero: FC = () => {
     }
   }).reverse();
 
+  const progressList = [
+    { id: 1, title: "Verification", description: "You verified your account" },
+    {
+      id: 2,
+      title: "Profile picture",
+      description: "You added your profile picture",
+    },
+    { id: 3, title: "Parents", description: "You added the parents" },
+    { id: 4, title: "Litter", description: "Your created the litter" },
+  ];
+
   return (
     <Styled.HeroWrapper>
       <Styled.CompletedWrapper>
@@ -48,21 +59,15 @@ const Hero: FC = () => {
         </Styled.ProgressWrapper>
       </Styled.CompletedWrapper>
       <Styled.ProgressContainer>
-        <Styled.ProgressItem>
-          Verification : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Profile picture : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Parents : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Litter : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
+        {progressList.map(({ id, title, description }) => (
+          <Styled.ProgressItem key={id}>
+            <Styled.CheckWrapper>
+              <FaCheck color={theme.color.light.default} />
+            </Styled.CheckWrapper>
+            <Styled.ItemTitle>{title}</Styled.ItemTitle>
+            <Styled.ItemDescription>{description}</Styled.ItemDescription>
+          </Styled.ProgressItem>
+        ))}
       </Styled.ProgressContainer>
     </Styled.HeroWrapper>
   );

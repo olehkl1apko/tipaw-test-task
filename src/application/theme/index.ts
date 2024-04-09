@@ -18,6 +18,7 @@ export const theme = {
       tint: "#c5ccd6",
       shade: "#616b77",
       text: "#63637E",
+      shadow: "rgba(149, 157, 165, 0.19)",
     },
     dark: {
       default: "#707070",

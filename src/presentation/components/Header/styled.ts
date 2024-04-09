@@ -7,7 +7,6 @@ export const HeaderContainer = styled.div`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
   padding: 12px 24px;
-  margin-bottom: 40px;
 `;
 
 export const Logo = styled.div`

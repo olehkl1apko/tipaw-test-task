@@ -88,11 +88,46 @@ export const ProgressBarFilled = styled.div`
   background-color: ${({ theme }) => theme.color.green.default};
 `;
 
-export const ProgressItem = styled.div``;
-
-export const GlobalProgress = styled.div``;
-
 export const ProgressContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+`;
+
+export const ProgressItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  padding: 24px;
+  border: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
+  box-shadow: -1px 3px 16px 0 ${({ theme }) => theme.color.medium.shadow};
+`;
+
+export const CheckWrapper = styled.p`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.color.green.default};
+`;
+
+export const ItemTitle = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.color.dark.text};
+  margin-top: 16px;
+`;
+
+export const ItemDescription = styled.p`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.color.medium.shade};
+  margin-top: 8px;
 `;
