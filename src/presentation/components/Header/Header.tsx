@@ -48,7 +48,7 @@ const Header: FC = () => {
         <BiBell size={24} />
         <Styled.UserInfo>
           <Styled.UserPhoto>
-            <img src={profile.avatar} width="40px" alt="some guy with a dog" />
+            <img src={profile.avatar} alt="some guy with a dog" />
           </Styled.UserPhoto>
           <Styled.UserName>{profile.name}</Styled.UserName>
           <Styled.ChevronButton onClick={() => setIsOpenMenu(!isOpenMenu)}>
