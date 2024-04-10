@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import { useGetProfile } from "../../../application/api/useGetProfile";
+import LoginButton from "../LoginBtn/LoginBtn";
 
 const Header: FC = () => {
   const theme = useTheme();
@@ -23,6 +24,7 @@ const Header: FC = () => {
   return (
     <Styled.HeaderContainer>
       <Styled.Logo>My Tipaw</Styled.Logo>
+      <LoginButton />
       <Styled.Navbar>
         <Styled.Today>
           {t("today")} {moment().format("DD.MM.YYYY")}
