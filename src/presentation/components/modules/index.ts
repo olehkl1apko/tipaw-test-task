@@ -8,6 +8,7 @@ export const pets = {
     "Rabbits",
     "Guinea pigs",
     "Reptiles",
+    "Another",
   ],
   fr: [
     "Chiens",
@@ -18,6 +19,7 @@ export const pets = {
     "Lapins",
     "Cobayes",
     "Reptiles",
+    "Un autre",
   ],
   nl: [
     "Honden",
@@ -28,6 +30,7 @@ export const pets = {
     "Konijnen",
     "Cavia's",
     "Reptielen",
+    "Een andere",
   ],
 };
 
@@ -41,6 +44,7 @@ export const occupations = {
     "Athlete",
     "Writer",
     "Musician",
+    "Another",
   ],
   fr: [
     "Médecin",
@@ -51,6 +55,7 @@ export const occupations = {
     "Athlète",
     "Écrivain",
     "Musicien",
+    "Un autre",
   ],
   nl: [
     "Dokter",
@@ -61,5 +66,6 @@ export const occupations = {
     "Atleet",
     "Schrijver",
     "Muzikant",
+    "Een andere",
   ],
 };

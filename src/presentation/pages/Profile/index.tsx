@@ -1,7 +1,7 @@
-import { CommonInfo } from "../../components";
+import { ProfileForms } from "../../components";
 
 const Profile = () => {
-  return <CommonInfo />;
+  return <ProfileForms />;
 };
 
 export default Profile;
