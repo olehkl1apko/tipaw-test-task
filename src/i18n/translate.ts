@@ -1,3 +1,5 @@
+import { occupations, pets } from "../presentation/components/modules";
+
 export const resources = {
   en: {
     translation: {
@@ -5,6 +7,7 @@ export const resources = {
       profile: "Profile",
       settings: "Settings",
       logout: "Logout",
+      login: "Log in",
       verification: "Verification",
       verificationDescription: "You verified your account",
       profilePicture: "Profile picture",
@@ -20,7 +23,9 @@ export const resources = {
       incompleteProfileMessage: "You have not completed your profile yet.",
       cannotUseTipaw: "And cannot use Tipaw for 100%.",
       announcements: "Announcements from TIPAW",
-      login: "Log in",
+      loginReminder: "Please log in to use the application",
+      pets: pets.en,
+      occupations: occupations.en,
     },
   },
   fr: {
@@ -29,6 +34,7 @@ export const resources = {
       profile: "Profil",
       settings: "Paramètres",
       logout: "Se déconnecter",
+      login: "Se connecter",
       verification: "Vérification",
       verificationDescription: "Vous avez vérifié votre compte",
       profilePicture: "Photo de profil",
@@ -44,7 +50,9 @@ export const resources = {
       incompleteProfileMessage: "Vous n'avez pas encore complété votre profil.",
       cannotUseTipaw: "Et ne pouvez PAS utiliser Tipaw à 100%.",
       announcements: "Annonces de TIPAW",
-      login: "Se connecter",
+      loginReminder: "Veuillez vous connecter pour utiliser l'application",
+      pets: pets.fr,
+      occupations: occupations.fr,
     },
   },
   nl: {
@@ -53,6 +61,7 @@ export const resources = {
       profile: "Profiel",
       settings: "Instellingen",
       logout: "Uitloggen",
+      login: "Inloggen",
       verification: "Verificatie",
       verificationDescription: "U heeft uw account geverifieerd",
       profilePicture: "Profielfoto",
@@ -68,7 +77,9 @@ export const resources = {
       incompleteProfileMessage: "U hebt uw profiel nog niet voltooid.",
       cannotUseTipaw: "En kunt Tipaw niet voor 100% gebruiken.",
       announcements: "Mededelingen van TIPAW",
-      login: "Inloggen",
+      loginReminder: "Inloggen om de applicatie te gebruiken",
+      pets: pets.nl,
+      occupations: occupations.nl,
     },
   },
 };

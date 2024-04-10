@@ -4,6 +4,10 @@ interface SuccessMessageProps {
   isProfileCompleted: boolean;
 }
 
+interface CheckWrapper {
+  isCompleted: boolean;
+}
+
 export const HeroWrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -128,14 +132,15 @@ export const ProgressItem = styled.div`
   box-shadow: -1px 3px 16px 0 ${({ theme }) => theme.color.medium.shadow};
 `;
 
-export const CheckWrapper = styled.p`
+export const CheckWrapper = styled.p<CheckWrapper>`
   width: 24px;
   height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.color.green.default};
+  background-color: ${({ theme, isCompleted }) =>
+    isCompleted ? theme.color.green.default : theme.color.red.default};
 `;
 
 export const ItemTitle = styled.p`

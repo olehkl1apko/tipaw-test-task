@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { FaCheck } from "react-icons/fa";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
@@ -13,8 +14,8 @@ const Hero: FC = () => {
 
   const isProfileCompleted = profile.globalProgress === 100;
 
-  const progressBars = Array.from({ length: 5 }, (_, index) => {
-    const shouldFill = index < Math.ceil(profile.globalProgress / 20);
+  const progressBars = Array.from({ length: 4 }, (_, index) => {
+    const shouldFill = index < Math.ceil(profile.globalProgress / 25);
 
     if (shouldFill) {
       return <Styled.ProgressBarFilled key={index} />;
@@ -28,15 +29,28 @@ const Hero: FC = () => {
       id: 1,
       title: t("verification"),
       description: t("verificationDescription"),
+      isCompleted: profile.verified,
     },
     {
       id: 2,
       title: t("profilePicture"),
       description: t("profilePictureDescription"),
+      isCompleted: profile.profilePictureIsVerified,
     },
-    { id: 3, title: t("parents"), description: t("parentsDescription") },
-    { id: 4, title: t("litter"), description: t("litterDescription") },
+    {
+      id: 3,
+      title: t("parents"),
+      description: t("parentsDescription"),
+      isCompleted: profile.parentsVerified,
+    },
+    {
+      id: 4,
+      title: t("litter"),
+      description: t("litterDescription"),
+      isCompleted: profile.litterVerified,
+    },
   ];
+
   return (
     <Styled.HeroWrapper>
       {/* <ul>
@@ -72,13 +86,21 @@ const Hero: FC = () => {
         </Styled.ProgressWrapper>
       </Styled.CompletedWrapper>
       <Styled.ProgressContainer>
-        {progressList.map(({ id, title, description }) => (
+        {progressList.map(({ id, title, description, isCompleted }) => (
           <Styled.ProgressItem key={id}>
-            <Styled.CheckWrapper>
-              <FaCheck color={theme.color.light.default} />
+            <Styled.CheckWrapper isCompleted={isCompleted}>
+              {isCompleted ? (
+                <FaCheck color={theme.color.light.default} />
+              ) : (
+                <AiOutlineCloseCircle color={theme.color.light.default} />
+              )}
             </Styled.CheckWrapper>
             <Styled.ItemTitle>{title}</Styled.ItemTitle>
-            <Styled.ItemDescription>{description}</Styled.ItemDescription>
+            <Styled.ItemDescription>
+              {isCompleted
+                ? description
+                : "Please fill this info in you profile"}
+            </Styled.ItemDescription>
           </Styled.ProgressItem>
         ))}
       </Styled.ProgressContainer>

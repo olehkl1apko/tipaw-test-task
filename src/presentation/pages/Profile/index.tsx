@@ -1,7 +1,7 @@
-import React from "react";
+import { CommonInfo } from "../../components";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return <CommonInfo />;
 };
 
 export default Profile;

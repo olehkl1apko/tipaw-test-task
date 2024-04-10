@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
+import { useNavigate } from "react-router-dom";
 
 const UserInfo: FC = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { user, logout } = useAuth0();
@@ -23,8 +25,9 @@ const UserInfo: FC = () => {
         </Styled.ChevronButton>
         {isOpenMenu && (
           <Styled.Modal>
-            <p>{t("profile")}</p>
-            <p>{t("settings")}</p>
+            <button onClick={() => navigate("./profile")}>
+              {t("profile")}
+            </button>
             <button onClick={() => logout()}>{t("logout")}</button>
           </Styled.Modal>
         )}

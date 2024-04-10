@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(NavLink)`
   font-size: 18px;
   line-height: 1.4;
   font-weight: 600;

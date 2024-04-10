@@ -17,12 +17,13 @@ const Header: FC = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem("language", lng);
     setIsOpenLanguage(false);
   };
 
   return (
     <Styled.HeaderContainer>
-      <Styled.Logo>My Tipaw</Styled.Logo>
+      <Styled.Logo to="/">My Tipaw</Styled.Logo>
       <Styled.Navbar>
         <Styled.Today>
           {t("today")} {moment().format("DD.MM.YYYY")}
