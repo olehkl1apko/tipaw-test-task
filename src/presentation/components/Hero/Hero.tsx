@@ -53,13 +53,6 @@ const Hero: FC = () => {
 
   return (
     <Styled.HeroWrapper>
-      {/* <ul>
-        {Object.keys(user).map((objKey, i) => (
-          <li key={i}>
-            {objKey}: {user[objKey]}{" "}
-          </li>
-        ))}
-      </ul> */}
       <Styled.CompletedWrapper>
         {isProfileCompleted && (
           <Styled.Notification>

@@ -72,3 +72,10 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.color.blue.darkerBlue};
   color: ${({ theme }) => theme.color.light.default};
 `;
+
+export const Error = styled.p`
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: ${({ theme }) => theme.color.red.default};
+`;

@@ -69,3 +69,12 @@ export const occupations = {
     "Een andere",
   ],
 };
+
+export type PersonalData = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  occupation: string;
+  avatar: File | null;
+};

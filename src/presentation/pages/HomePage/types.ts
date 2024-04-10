@@ -16,7 +16,6 @@ export interface AnnouncementData {
 export interface ProfileData {
   name: string;
   avatar: string;
-
   globalProgress: number;
   verified: boolean;
   profilePictureIsVerified: boolean;

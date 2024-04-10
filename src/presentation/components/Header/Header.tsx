@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
 import moment from "moment";
@@ -8,18 +8,32 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as Styled from "./styled";
 import UserInfo from "./UserInfo";
 import { LoginBtn } from "../LoginBtn";
+import { useSignup } from "../../../application/hooks/useSignup";
 
 const Header: FC = () => {
   const theme = useTheme();
-  const { isAuthenticated, isLoading, error } = useAuth0();
+  const { isAuthenticated, isLoading, error, user } = useAuth0();
   const { t, i18n } = useTranslation();
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
+  const { signup } = useSignup();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem("language", lng);
     setIsOpenLanguage(false);
   };
+
+  useEffect(() => {
+    if (user) {
+      const payload = {
+        email: user.email,
+        name: user.nickname,
+        avatar: user.picture,
+      };
+
+      signup(payload);
+    }
+  }, [user]);
 
   return (
     <Styled.HeaderContainer>
@@ -46,7 +60,11 @@ const Header: FC = () => {
             </Styled.ModalLanguageBtn>
           </Styled.ModalLanguage>
         )}
-        {isAuthenticated && !error && !isLoading ? <UserInfo /> : <LoginBtn />}
+        {isAuthenticated && user && !error && !isLoading ? (
+          <UserInfo user={user} />
+        ) : (
+          <LoginBtn />
+        )}
         {error && <Styled.Error>Authentication Error</Styled.Error>}
         {isLoading && <Styled.Loading>Loading...</Styled.Loading>}
       </Styled.Navbar>
