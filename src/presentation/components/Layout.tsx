@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Suspense } from "react";
 
 import Header from "./Header/Header";
+import LoadingFallback from "./LoadingFallback/LoadingFallback";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.default};
@@ -11,7 +12,7 @@ export const Container = styled.div`
 
 const Layout = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingFallback />}>
       <Container>
         <Header />
         <Outlet />
