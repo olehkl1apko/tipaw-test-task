@@ -1,20 +1,19 @@
 import { FC, useState } from "react";
-import { BiBell, BiChevronDown } from "react-icons/bi";
 import { FaGlobe } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
-import { useGetProfile } from "../../../application/api/useGetProfile";
-import LoginButton from "../LoginBtn/LoginBtn";
+import UserInfo from "./UserInfo";
+import { LoginBtn } from "../LoginBtn";
 
 const Header: FC = () => {
   const theme = useTheme();
+  const { isAuthenticated, isLoading, error } = useAuth0();
   const { t, i18n } = useTranslation();
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
-  const { profile } = useGetProfile();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -24,7 +23,6 @@ const Header: FC = () => {
   return (
     <Styled.HeaderContainer>
       <Styled.Logo>My Tipaw</Styled.Logo>
-      <LoginButton />
       <Styled.Navbar>
         <Styled.Today>
           {t("today")} {moment().format("DD.MM.YYYY")}
@@ -47,23 +45,9 @@ const Header: FC = () => {
             </Styled.ModalLanguageBtn>
           </Styled.ModalLanguage>
         )}
-        <BiBell size={24} />
-        <Styled.UserInfo>
-          <Styled.UserPhoto>
-            <img src={profile.avatar} alt="some guy with a dog" />
-          </Styled.UserPhoto>
-          <Styled.UserName>{profile.name}</Styled.UserName>
-          <Styled.ChevronButton onClick={() => setIsOpenMenu(!isOpenMenu)}>
-            <BiChevronDown size={24} />
-            {isOpenMenu && (
-              <Styled.Modal>
-                <p>{t("profile")}</p>
-                <p>{t("settings")}</p>
-                <p>{t("logout")}</p>
-              </Styled.Modal>
-            )}
-          </Styled.ChevronButton>
-        </Styled.UserInfo>
+        {isAuthenticated && !error && !isLoading ? <UserInfo /> : <LoginBtn />}
+        {error && <Styled.Error>Authentication Error</Styled.Error>}
+        {isLoading && <Styled.Loading>Loading...</Styled.Loading>}
       </Styled.Navbar>
     </Styled.HeaderContainer>
   );

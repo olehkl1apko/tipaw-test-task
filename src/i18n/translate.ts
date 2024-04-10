@@ -20,6 +20,7 @@ export const resources = {
       incompleteProfileMessage: "You have not completed your profile yet.",
       cannotUseTipaw: "And cannot use Tipaw for 100%.",
       announcements: "Announcements from TIPAW",
+      login: "Log in",
     },
   },
   fr: {
@@ -43,6 +44,7 @@ export const resources = {
       incompleteProfileMessage: "Vous n'avez pas encore complété votre profil.",
       cannotUseTipaw: "Et ne pouvez PAS utiliser Tipaw à 100%.",
       announcements: "Annonces de TIPAW",
+      login: "Se connecter",
     },
   },
   nl: {
@@ -66,6 +68,7 @@ export const resources = {
       incompleteProfileMessage: "U hebt uw profiel nog niet voltooid.",
       cannotUseTipaw: "En kunt Tipaw niet voor 100% gebruiken.",
       announcements: "Mededelingen van TIPAW",
+      login: "Inloggen",
     },
   },
 };

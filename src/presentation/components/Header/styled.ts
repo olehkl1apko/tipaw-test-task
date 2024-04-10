@@ -94,23 +94,27 @@ export const ChevronButton = styled.button``;
 
 export const Modal = styled.div`
   position: absolute;
-  right: 0%;
+  right: 0;
+  top: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.color.medium.default};
-  color: ${({ theme }) => theme.color.light.default};
   padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.7;
-  gap: 4px;
+
+  button,
+  p {
+    color: ${({ theme }) => theme.color.light.default};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 2;
+  }
 `;
 
 export const ModalLanguage = styled.div`
   position: absolute;
-  top: 80%;
-  left: 40%;
+  top: 100%;
+  left: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,4 +132,30 @@ export const ModalLanguageBtn = styled.button`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.7;
+`;
+
+export const Error = styled.span`
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.color.red.default};
+
+  @media screen and (max-width: 425px) {
+    font-size: 12px;
+    font-weight: 500;
+  }
+`;
+
+export const Loading = styled.span`
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.color.blue.default};
+
+  @media screen and (max-width: 425px) {
+    font-size: 12px;
+    font-weight: 500;
+  }
 `;
