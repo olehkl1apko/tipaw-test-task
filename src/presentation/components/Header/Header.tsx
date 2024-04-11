@@ -13,9 +13,9 @@ import { useSignup } from "../../../application/hooks/useSignup";
 const Header: FC = () => {
   const theme = useTheme();
   const { isAuthenticated, isLoading, error, user } = useAuth0();
+  const { signup } = useSignup();
   const { t, i18n } = useTranslation();
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
-  const { signup } = useSignup();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -60,8 +60,8 @@ const Header: FC = () => {
             </Styled.ModalLanguageBtn>
           </Styled.ModalLanguage>
         )}
-        {isAuthenticated && user && !error && !isLoading ? (
-          <UserInfo user={user} />
+        {isAuthenticated && !error && !isLoading && user?.email ? (
+          <UserInfo email={user?.email} />
         ) : (
           <LoginBtn />
         )}

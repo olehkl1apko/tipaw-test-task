@@ -5,21 +5,27 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
 import { useNavigate } from "react-router-dom";
+import { useGetUser } from "../../../application/hooks/useGetUser";
 
-const UserInfo: FC = () => {
+type Props = {
+  email: string;
+};
+
+const UserInfo: FC<Props> = ({ email }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const { user, logout } = useAuth0();
+  const { logout } = useAuth0();
+  const { data } = useGetUser(email);
 
   return (
     <>
       <BiBell size={24} />
       <Styled.UserInfo>
         <Styled.UserPhoto>
-          <img src={user?.picture} alt={user?.name} />
+          <img src={data?.avatar} alt={data?.name} />
         </Styled.UserPhoto>
-        <Styled.UserName>{user?.name}</Styled.UserName>
+        <Styled.UserName>{data?.name}</Styled.UserName>
         <Styled.ChevronButton onClick={() => setIsOpenMenu(!isOpenMenu)}>
           <BiChevronDown size={24} />
         </Styled.ChevronButton>

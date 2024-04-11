@@ -1,41 +1,54 @@
 import { useState, useEffect } from "react";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  DocumentData,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 import { projectFirestore } from "../../firebaseConfig";
 
-type Payload = {
-  name?: string;
-  email?: string;
-  avatar?: string;
-};
-
-export const useGetUser = () => {
+export const useGetUser = (email: string) => {
+  const [data, setData] = useState<DocumentData | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
 
-  const getUserProfile = async (email) => {
-    try {
-      const docRef = doc(fireDB, "users", id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        return {
-          success: true,
-          data: docSnap.data(),
-        };
-      } else {
-        return {
-          success: false,
-          message: "No such user!",
-        };
-      }
-    } catch (error) {
-      return {
-        success: false,
-        message: "Something went wrong",
-      };
-    }
-  };
+  useEffect(() => {
+    const getUser = async () => {
+      setError(null);
+      setIsPending(true);
 
-  return { signup, error, isPending };
+      try {
+        const req = query(
+          collection(projectFirestore, "users"),
+          where("email", "==", email)
+        );
+        const querySnapshot = await getDocs(req);
+        if (!querySnapshot.empty) {
+          const userData = querySnapshot.docs[0].data();
+          setData(userData);
+        } else {
+          setData(null);
+        }
+
+        if (!isCancelled) {
+          setIsPending(false);
+          setError(null);
+        }
+      } catch (error: any) {
+        if (!isCancelled) {
+          setError(error.message);
+          setIsPending(false);
+        }
+      }
+    };
+
+    getUser();
+
+    return () => setIsCancelled(true);
+  }, [email, isCancelled]);
+
+  return { data, error, isPending };
 };
