@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Suspense } from "react";
 
 import Header from "./Header/Header";
-import LoadingFallback from "./LoadingFallback/LoadingFallback";
+import LoadingFallback from "./LoadingFallback";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.default};

@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
 import { useNavigate } from "react-router-dom";
-import { useGetUser } from "../../../application/hooks/useGetUser";
+import { useGetUser } from "../../../application/hooks";
 
 type Props = {
   email: string;
@@ -16,7 +16,10 @@ const UserInfo: FC<Props> = ({ email }) => {
   const { t } = useTranslation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { logout } = useAuth0();
-  const { data } = useGetUser(email);
+  const { data, error, isPending } = useGetUser(email);
+
+  if (error) return <Styled.Error>Authentication Error</Styled.Error>;
+  if (isPending) return <Styled.Loading>Loading...</Styled.Loading>;
 
   return (
     <>

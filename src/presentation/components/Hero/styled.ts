@@ -25,7 +25,7 @@ export const CompletedWrapper = styled.div`
 
   @media screen and (max-width: 767px) {
     flex-direction: column;
-    align-items: start;
+    justify-content: center;
     padding: 20px;
   }
 `;
@@ -39,7 +39,7 @@ export const Notification = styled.div`
 
 export const SuccessMessage = styled.h3<SuccessMessageProps>`
   color: ${({ theme, isProfileCompleted }) =>
-    isProfileCompleted ? theme.color.blue.default : theme.color.red.glass};
+    isProfileCompleted ? theme.color.blue.default : theme.color.red.default};
   font-size: 18px;
   font-weight: 600;
   line-height: 1.4;
@@ -116,7 +116,7 @@ export const ProgressContainer = styled.div`
   gap: 32px;
   padding: 40px;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 767px) {
     justify-content: center;
   }
 `;
@@ -126,7 +126,7 @@ export const ProgressItem = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
-  min-width: 224px;
+  width: 300px;
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
   box-shadow: -1px 3px 16px 0 ${({ theme }) => theme.color.medium.shadow};

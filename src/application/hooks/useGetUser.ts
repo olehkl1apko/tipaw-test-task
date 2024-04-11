@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
-import {
-  collection,
-  DocumentData,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebaseConfig";
+import { ProfileData } from "../../presentation/pages/HomePage/types";
 
 export const useGetUser = (email: string) => {
-  const [data, setData] = useState<DocumentData | null>(null);
+  const [data, setData] = useState<ProfileData | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
@@ -27,10 +22,10 @@ export const useGetUser = (email: string) => {
         );
         const querySnapshot = await getDocs(req);
         if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data();
+          const userData = querySnapshot.docs[0].data() as ProfileData;
           setData(userData);
         } else {
-          setData(null);
+          setError(true);
         }
 
         if (!isCancelled) {

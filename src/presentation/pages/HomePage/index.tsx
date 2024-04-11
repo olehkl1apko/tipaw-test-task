@@ -5,13 +5,13 @@ import * as Styled from "./styled";
 import { Announcements, Hero, LoginReminder } from "../../components";
 
 export const HomePage: FC = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <>
-      {isAuthenticated ? (
+      {isAuthenticated && user?.email ? (
         <Styled.PageWrapper>
-          <Hero />
+          <Hero email={user?.email} />
           <Announcements />
         </Styled.PageWrapper>
       ) : (

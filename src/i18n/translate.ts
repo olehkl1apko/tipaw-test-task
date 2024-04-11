@@ -26,6 +26,9 @@ export const resources = {
       loginReminder: "Please log in to use the application",
       pets: pets.en,
       occupations: occupations.en,
+      pleasefill: "Please fill this info in you profile",
+      errorMsg:
+        "An unexpected error occurred while retrieving user data. Please try again later.",
     },
   },
   fr: {
@@ -53,6 +56,10 @@ export const resources = {
       loginReminder: "Veuillez vous connecter pour utiliser l'application",
       pets: pets.fr,
       occupations: occupations.fr,
+      pleasefill:
+        "S'il vous plaît, remplissez ces informations dans votre profil.",
+      errorMsg:
+        "Une erreur inattendue s'est produite lors de la récupération des données utilisateur. Veuillez réessayer plus tard.",
     },
   },
   nl: {
@@ -80,6 +87,9 @@ export const resources = {
       loginReminder: "Inloggen om de applicatie te gebruiken",
       pets: pets.nl,
       occupations: occupations.nl,
+      pleasefill: "Vul deze informatie in uw profiel in, alstublieft.",
+      errorMsg:
+        "Er is een onverwachte fout opgetreden bij het ophalen van gebruikersgegevens. Probeer het later opnieuw.",
     },
   },
 };
