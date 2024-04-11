@@ -1,5 +1,4 @@
-import { useLogin } from "./useLogin";
 import { useGetUser } from "./useGetUser";
-import { useUpdateVerify } from "./useUpdateVerify";
+import { useUpdateUser } from "./useUpdateUser";
 
-export { useGetUser, useLogin, useUpdateVerify };
+export { useGetUser, useUpdateUser };

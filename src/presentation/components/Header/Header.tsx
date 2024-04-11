@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as Styled from "./styled";
 import UserInfo from "./UserInfo";
 import { LoginBtn } from "../LoginBtn";
-import { AuthUser } from "../../modules";
 
 const Header: FC = () => {
   const theme = useTheme();
@@ -47,11 +46,7 @@ const Header: FC = () => {
             </Styled.ModalLanguageBtn>
           </Styled.ModalLanguage>
         )}
-        {isAuthenticated && user ? (
-          <UserInfo user={user as AuthUser} />
-        ) : (
-          <LoginBtn />
-        )}
+        {isAuthenticated && user ? <UserInfo /> : <LoginBtn />}
       </Styled.Navbar>
     </Styled.HeaderContainer>
   );

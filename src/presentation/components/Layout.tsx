@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Suspense } from "react";
+import { FC, Suspense } from "react";
 
 import Header from "./Header/Header";
 import LoadingFallback from "./LoadingFallback";
@@ -10,7 +10,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.light.bg};
 `;
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Container>

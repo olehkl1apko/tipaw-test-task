@@ -27,6 +27,7 @@ export const resources = {
       pets: pets.en,
       occupations: occupations.en,
       pleasefill: "Please fill this info in you profile",
+      pleaseVerify: "Please verify you email address - check email from Tipaw",
       errorMsg:
         "An unexpected error occurred while retrieving user data. Please try again later.",
     },
@@ -58,6 +59,8 @@ export const resources = {
       occupations: occupations.fr,
       pleasefill:
         "S'il vous plaît, remplissez ces informations dans votre profil.",
+      pleaseVerify:
+        "Veuillez vérifier votre adresse e-mail - vérifiez l'e-mail de Tipaw.",
       errorMsg:
         "Une erreur inattendue s'est produite lors de la récupération des données utilisateur. Veuillez réessayer plus tard.",
     },
@@ -88,6 +91,8 @@ export const resources = {
       pets: pets.nl,
       occupations: occupations.nl,
       pleasefill: "Vul deze informatie in uw profiel in, alstublieft.",
+      pleaseVerify:
+        "Controleer uw e-mailadres alstublieft - controleer de e-mail van Tipaw.",
       errorMsg:
         "Er is een onverwachte fout opgetreden bij het ophalen van gebruikersgegevens. Probeer het later opnieuw.",
     },

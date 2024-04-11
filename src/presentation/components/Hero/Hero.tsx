@@ -1,55 +1,55 @@
 import { FC } from "react";
-import { FaCheck } from "react-icons/fa";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
-import { useGetUser } from "../../../application/hooks";
-import Error from "../Error";
-import LoadingFallback from "../LoadingFallback";
 import ProgressBars from "./ProgressBars";
+import { useUserContext } from "../../../application/context";
+import ProgressCard from "./ProgressCard";
 
-type Props = {
-  email: string;
+export type ProgressList = {
+  id: number;
+  title: string;
+  descriptionIfFill: string;
+  descriptionIfEmpty: string;
+  isCompleted: boolean;
 };
 
-const Hero: FC<Props> = ({ email }) => {
-  const theme = useTheme();
+const Hero: FC = () => {
   const { t } = useTranslation();
-  const { data, error, isPending } = useGetUser(email);
+  const { userFromDB } = useUserContext();
 
-  const progressList = [
+  const progressList: ProgressList[] = [
     {
       id: 1,
       title: t("verification"),
-      description: t("verificationDescription"),
-      isCompleted: data?.verified || false,
+      descriptionIfFill: t("verificationDescription"),
+      descriptionIfEmpty: t("pleaseVerify"),
+      isCompleted: userFromDB?.verified || false,
     },
     {
       id: 2,
       title: t("profilePicture"),
-      description: t("profilePictureDescription"),
-      isCompleted: data?.profilePictureIsVerified || false,
+      descriptionIfFill: t("profilePictureDescription"),
+      descriptionIfEmpty: t("pleasefill"),
+      isCompleted: userFromDB?.profilePictureIsVerified || false,
     },
     {
       id: 3,
       title: t("parents"),
-      description: t("parentsDescription"),
-      isCompleted: data?.parentsVerified || false,
+      descriptionIfFill: t("parentsDescription"),
+      descriptionIfEmpty: t("pleasefill"),
+      isCompleted: userFromDB?.parentsVerified || false,
     },
     {
       id: 4,
       title: t("litter"),
-      description: t("litterDescription"),
-      isCompleted: data?.litterVerified || false,
+      descriptionIfFill: t("litterDescription"),
+      descriptionIfEmpty: t("pleasefill"),
+      isCompleted: userFromDB?.litterVerified || false,
     },
   ];
 
-  const isProfileCompleted = data?.globalProgress === 100;
-
-  if (error) return <Error />;
-  if (isPending) return <LoadingFallback />;
+  const isProfileCompleted = userFromDB?.globalProgress === 100;
 
   return (
     <Styled.HeroWrapper>
@@ -73,31 +73,17 @@ const Hero: FC<Props> = ({ email }) => {
         <Styled.ProgressWrapper>
           <Styled.TextWrapper>
             <Styled.Text>{t("profileCompleted")}</Styled.Text>
-            <Styled.Percentage>{data?.globalProgress || 0}%</Styled.Percentage>
+            <Styled.Percentage>
+              {userFromDB?.globalProgress || 0}%
+            </Styled.Percentage>
           </Styled.TextWrapper>
           <ProgressBars
             length={progressList.length}
-            globalProgress={data?.globalProgress}
+            globalProgress={userFromDB?.globalProgress || 0}
           />
         </Styled.ProgressWrapper>
       </Styled.CompletedWrapper>
-      <Styled.ProgressContainer>
-        {progressList.map(({ id, title, description, isCompleted }) => (
-          <Styled.ProgressItem key={id}>
-            <Styled.CheckWrapper isCompleted={isCompleted}>
-              {isCompleted ? (
-                <FaCheck color={theme.color.light.default} />
-              ) : (
-                <AiOutlineCloseCircle color={theme.color.light.default} />
-              )}
-            </Styled.CheckWrapper>
-            <Styled.ItemTitle>{title}</Styled.ItemTitle>
-            <Styled.ItemDescription>
-              {isCompleted ? description : t("pleasefill")}
-            </Styled.ItemDescription>
-          </Styled.ProgressItem>
-        ))}
-      </Styled.ProgressContainer>
+      <ProgressCard progressList={progressList} />
     </Styled.HeroWrapper>
   );
 };

@@ -89,7 +89,7 @@ export const ProgressBar = styled.div`
   width: 64px;
   height: 8px;
   border-radius: 2px;
-  background-color: ${({ theme }) => theme.color.medium.default};
+  background-color: ${({ theme }) => theme.color.light.shade};
 
   @media screen and (max-width: 424px) {
     width: 48px;

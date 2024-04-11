@@ -5,3 +5,4 @@ export { default as LoginReminder } from "./LoginReminder/LoginReminder";
 export { default as ProfileForms } from "./ProfileInfo";
 export { default as Layout } from "./Layout";
 export { default as Error } from "./Error";
+export { default as LoadingFallback } from "./LoadingFallback";

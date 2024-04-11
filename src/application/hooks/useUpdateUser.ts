@@ -12,16 +12,22 @@ import { projectFirestore } from "../../firebaseConfig";
 import { ProfileData } from "../../presentation/pages/HomePage/types";
 import { AuthUser } from "../../presentation/modules";
 
-export const useUpdateVerify = (user: AuthUser) => {
-  const [updatedUser, setUpdatedUser] = useState<ProfileData | null>(null);
+export const useUpdateUser = (user: AuthUser) => {
+  const [userFB, setUserFB] = useState<ProfileData | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
+    const updateUser = async () => {
       setError(null);
       setIsPending(true);
+
+      if (!user) {
+        setUserFB(null);
+        setIsPending(false);
+        return;
+      }
 
       try {
         const req = query(
@@ -37,17 +43,12 @@ export const useUpdateVerify = (user: AuthUser) => {
             verified: user.email_verified,
           });
 
-          setUpdatedUser((prevUser) => {
-            if (prevUser) {
-              return {
-                ...prevUser,
-                verified: user.email_verified,
-              };
-            }
-            return null;
-          });
+          const updatedDocSnapshot = await getDocs(req);
+          const updatedDocData = updatedDocSnapshot.docs[0].data();
+
+          setUserFB(updatedDocData as ProfileData);
         } else {
-          setError(true);
+          setUserFB(null);
         }
 
         if (!isCancelled) {
@@ -62,10 +63,10 @@ export const useUpdateVerify = (user: AuthUser) => {
       }
     };
 
-    getUser();
+    updateUser();
 
     return () => setIsCancelled(true);
   }, [isCancelled, user]);
 
-  return { updatedUser, error, isPending };
+  return { userFB, error, isPending };
 };
