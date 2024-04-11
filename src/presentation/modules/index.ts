@@ -78,3 +78,13 @@ export type PersonalData = {
   occupation: string;
   avatar: File | null;
 };
+
+export type AuthUser = {
+  email: string;
+  email_verified: boolean;
+  name: string;
+  nickname: string;
+  picture: string;
+  sub: string;
+  updated_at: string;
+};

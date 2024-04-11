@@ -5,18 +5,23 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
 import { useNavigate } from "react-router-dom";
-import { useGetUser } from "../../../application/hooks";
+import { useLogin } from "../../../application/hooks";
+import { AuthUser } from "../../modules";
 
 type Props = {
-  email: string;
+  user: AuthUser;
 };
 
-const UserInfo: FC<Props> = ({ email }) => {
+const UserInfo: FC<Props> = ({ user }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { logout } = useAuth0();
-  const { data, error, isPending } = useGetUser(email);
+  const { userFB, error, isPending } = useLogin({
+    email: user?.email,
+    name: user?.nickname,
+    avatar: user?.picture,
+  });
 
   if (error) return <Styled.Error>Authentication Error</Styled.Error>;
   if (isPending) return <Styled.Loading>Loading...</Styled.Loading>;
@@ -26,9 +31,9 @@ const UserInfo: FC<Props> = ({ email }) => {
       <BiBell size={24} />
       <Styled.UserInfo>
         <Styled.UserPhoto>
-          <img src={data?.avatar} alt={data?.name} />
+          <img src={userFB?.avatar} alt={userFB?.name} />
         </Styled.UserPhoto>
-        <Styled.UserName>{data?.name}</Styled.UserName>
+        <Styled.UserName>{userFB?.name}</Styled.UserName>
         <Styled.ChevronButton onClick={() => setIsOpenMenu(!isOpenMenu)}>
           <BiChevronDown size={24} />
         </Styled.ChevronButton>

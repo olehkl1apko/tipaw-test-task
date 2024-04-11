@@ -8,6 +8,7 @@ import * as Styled from "./styled";
 import { useGetUser } from "../../../application/hooks";
 import Error from "../Error";
 import LoadingFallback from "../LoadingFallback";
+import ProgressBars from "./ProgressBars";
 
 type Props = {
   email: string;
@@ -18,46 +19,34 @@ const Hero: FC<Props> = ({ email }) => {
   const { t } = useTranslation();
   const { data, error, isPending } = useGetUser(email);
 
-  const isProfileCompleted = data?.globalProgress === 100;
-
-  const progressBars = data
-    ? Array.from({ length: 4 }, (_, index) => {
-        const shouldFill = index < Math.ceil(data.globalProgress / 25);
-
-        if (shouldFill) {
-          return <Styled.ProgressBarFilled key={index} />;
-        } else {
-          return <Styled.ProgressBar key={index} />;
-        }
-      }).reverse()
-    : null;
-
   const progressList = [
     {
       id: 1,
       title: t("verification"),
       description: t("verificationDescription"),
-      isCompleted: data?.verified,
+      isCompleted: data?.verified || false,
     },
     {
       id: 2,
       title: t("profilePicture"),
       description: t("profilePictureDescription"),
-      isCompleted: data?.profilePictureIsVerified,
+      isCompleted: data?.profilePictureIsVerified || false,
     },
     {
       id: 3,
       title: t("parents"),
       description: t("parentsDescription"),
-      isCompleted: data?.parentsVerified,
+      isCompleted: data?.parentsVerified || false,
     },
     {
       id: 4,
       title: t("litter"),
       description: t("litterDescription"),
-      isCompleted: data?.litterVerified,
+      isCompleted: data?.litterVerified || false,
     },
   ];
+
+  const isProfileCompleted = data?.globalProgress === 100;
 
   if (error) return <Error />;
   if (isPending) return <LoadingFallback />;
@@ -84,13 +73,16 @@ const Hero: FC<Props> = ({ email }) => {
         <Styled.ProgressWrapper>
           <Styled.TextWrapper>
             <Styled.Text>{t("profileCompleted")}</Styled.Text>
-            <Styled.Percentage>{data?.globalProgress}%</Styled.Percentage>
+            <Styled.Percentage>{data?.globalProgress || 0}%</Styled.Percentage>
           </Styled.TextWrapper>
-          <Styled.ProgressBarWrapper>{progressBars}</Styled.ProgressBarWrapper>
+          <ProgressBars
+            length={progressList.length}
+            globalProgress={data?.globalProgress}
+          />
         </Styled.ProgressWrapper>
       </Styled.CompletedWrapper>
       <Styled.ProgressContainer>
-        {progressList.map(({ id, title, description, isCompleted = false }) => (
+        {progressList.map(({ id, title, description, isCompleted }) => (
           <Styled.ProgressItem key={id}>
             <Styled.CheckWrapper isCompleted={isCompleted}>
               {isCompleted ? (

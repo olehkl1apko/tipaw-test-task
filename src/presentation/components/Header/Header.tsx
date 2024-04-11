@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 import { useTheme } from "@emotion/react";
 import moment from "moment";
@@ -8,12 +8,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as Styled from "./styled";
 import UserInfo from "./UserInfo";
 import { LoginBtn } from "../LoginBtn";
-import { useSignup } from "../../../application/hooks/useSignup";
+import { AuthUser } from "../../modules";
 
 const Header: FC = () => {
   const theme = useTheme();
   const { isAuthenticated, user } = useAuth0();
-  const { signup } = useSignup();
   const { t, i18n } = useTranslation();
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
 
@@ -22,18 +21,6 @@ const Header: FC = () => {
     localStorage.setItem("language", lng);
     setIsOpenLanguage(false);
   };
-
-  useEffect(() => {
-    if (user) {
-      const payload = {
-        email: user.email,
-        name: user.nickname,
-        avatar: user.picture,
-      };
-
-      signup(payload);
-    }
-  }, [user]);
 
   return (
     <Styled.HeaderContainer>
@@ -60,8 +47,8 @@ const Header: FC = () => {
             </Styled.ModalLanguageBtn>
           </Styled.ModalLanguage>
         )}
-        {isAuthenticated && user?.email ? (
-          <UserInfo email={user?.email} />
+        {isAuthenticated && user ? (
+          <UserInfo user={user as AuthUser} />
         ) : (
           <LoginBtn />
         )}

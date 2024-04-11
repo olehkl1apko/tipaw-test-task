@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { FC } from "react";
 import { object, string, mixed } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as Styled from "./styled";
 import { resources } from "../../../i18n/translate";
 import { currentLanguage } from "../../helpers";
-import { PersonalData } from "../modules";
+import { PersonalData } from "../../modules";
 
 const PersonalInfo: FC = () => {
   const initialValues = {

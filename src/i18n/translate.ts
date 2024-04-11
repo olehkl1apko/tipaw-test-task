@@ -1,4 +1,4 @@
-import { occupations, pets } from "../presentation/components/modules";
+import { occupations, pets } from "../presentation/modules";
 
 export const resources = {
   en: {
