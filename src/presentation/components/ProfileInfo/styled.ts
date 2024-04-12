@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface ButtonProps {
+  isPending: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -65,12 +69,14 @@ export const Select = styled.select`
   box-shadow: 1px 1px 1px ${({ theme }) => theme.color.medium.default};
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   padding: 12px 16px;
   border-radius: 4px;
   border: none;
-  background-color: ${({ theme }) => theme.color.blue.darkerBlue};
+  background-color: ${({ theme, isPending }) =>
+    isPending ? theme.color.blue.default : theme.color.blue.darkerBlue};
   color: ${({ theme }) => theme.color.light.default};
+  cursor: ${({ isPending }) => (isPending ? "not-allowed" : "pointer")};
 `;
 
 export const Error = styled.p`

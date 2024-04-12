@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebase/firebaseConfig";
 import {
   ILitter,
   IParents,
   IPetProfile,
+  IPhotos,
   IProfileUser,
 } from "../../presentation/modules";
+import { checkProperties } from "../../presentation/helpers";
+
+type UpdateType = "petCommonInfo" | "petParents" | "petLitter" | "photos";
 
 export const useUpdateProfile = (
-  data: IPetProfile | IParents | ILitter,
-  email: string
+  data: IPetProfile | IParents | ILitter | IPhotos | null,
+  userId: string | undefined,
+  updateType: UpdateType
 ) => {
   const [profile, setProfile] = useState<IProfileUser | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
@@ -30,31 +28,46 @@ export const useUpdateProfile = (
       setError(null);
       setIsPending(true);
 
-      if (!data) {
+      if (!data || !userId) {
         setProfile(null);
         setIsPending(false);
         return;
       }
 
       try {
-        const req = query(
-          collection(projectFirestore, "users"),
-          where("email", "==", email)
-        );
+        const userRef = doc(projectFirestore, "users", userId);
 
-        const querySnapshot = await getDocs(req);
+        let updateFields: Partial<IProfileUser> = {};
 
-        if (!querySnapshot.empty) {
-          const docId = querySnapshot.docs[0].id;
-          await updateDoc(doc(projectFirestore, "users", docId), {});
-
-          const updatedDocSnapshot = await getDocs(req);
-          const updatedDocData = updatedDocSnapshot.docs[0].data();
-
-          setProfile(updatedDocData as IProfileUser);
-        } else {
-          setProfile(null);
+        switch (updateType) {
+          case "petCommonInfo":
+            updateFields = {
+              petCommonInfo: data as IPetProfile,
+              commoninfoVerified: checkProperties(data),
+            };
+            break;
+          case "petParents":
+            updateFields = { petParents: data as IParents };
+            break;
+          case "petLitter":
+            updateFields = { petLitter: data as ILitter };
+            break;
+          case "photos":
+            updateFields = { photos: data as IPhotos };
+            break;
+          default:
+            break;
         }
+
+        await updateDoc(userRef, updateFields);
+
+        // Fetch the updated user document from Firestore
+        const updatedUserSnapshot = await getDoc(userRef);
+        const updatedUserData = updatedUserSnapshot.data() as IProfileUser;
+        updatedUserData.id = userRef.id;
+        setProfile(updatedUserData);
+
+        setIsPending(false);
 
         if (!isCancelled) {
           setIsPending(false);
@@ -71,7 +84,7 @@ export const useUpdateProfile = (
     updateProfile();
 
     return () => setIsCancelled(true);
-  }, [data, email, isCancelled]);
+  }, [data, userId, updateType, isCancelled]);
 
   return { profile, error, isPending };
 };

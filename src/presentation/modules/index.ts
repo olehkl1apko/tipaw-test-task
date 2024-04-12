@@ -34,20 +34,6 @@ export const petSpecies = {
   ],
 };
 
-export type IProfileUser = {
-  id: string;
-  name: string;
-  avatar: string;
-  verified: boolean;
-  commoninfoVerified: boolean;
-  profilePictureIsVerified: boolean;
-  parentsVerified: boolean;
-  litterVerified: boolean;
-  petCommonInfo: IPetProfile;
-  petParents: IParents;
-  petLitter: ILitter;
-};
-
 export type IAuthUser = {
   email: string;
   email_verified: boolean;
@@ -61,13 +47,28 @@ export type IAuthUser = {
   updated_at: string;
 };
 
+export type IProfileUser = {
+  id: string;
+  name: string;
+  avatar: string;
+  verified: boolean;
+  commoninfoVerified: boolean;
+  profilePictureIsVerified: boolean;
+  parentsVerified: boolean;
+  litterVerified: boolean;
+  petCommonInfo: IPetProfile;
+  petParents: IParents;
+  petLitter: ILitter;
+  photos: IPhotos;
+};
+
 export type IPetProfile = {
-  petName: string | null;
-  specie: string | null;
-  age: number | null;
+  petName: string;
+  specie: string;
+  age: number;
   gender: string;
-  color: string | null;
-  weight: number | null;
+  color: string;
+  weight: number;
 };
 
 export type IParents = {
@@ -81,6 +82,8 @@ export type ILitter = {
   puppies: number | null;
   birthDate: Date | null;
 };
+
+export type IPhotos = string[];
 
 export type IProgressList = {
   id: number;

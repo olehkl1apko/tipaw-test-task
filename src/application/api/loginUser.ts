@@ -60,6 +60,7 @@ export const loginUser = async (payload: Payload): Promise<IProfileUser> => {
           puppies: null,
           birthDate: null,
         },
+        photos: [],
       };
 
       const newUserDocRef = await addDoc(

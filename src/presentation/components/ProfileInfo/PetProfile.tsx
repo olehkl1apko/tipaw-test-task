@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { object, string, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Resolver } from "react-hook-form";
@@ -8,29 +8,35 @@ import { resources } from "../../../i18n/translate";
 import { currentLanguage } from "../../helpers";
 import { IPetProfile } from "../../modules";
 import { useUserContext } from "../../../application/context";
+import { useUpdateProfile } from "../../../application/hooks";
 
 const PetProfile: FC = () => {
-  const { userFromDB } = useUserContext();
-  console.log("🚀 ~ userFromDB:", userFromDB)
+  const { userFromDB, setUserFromDB } = useUserContext();
+  const [data, setData] = useState<IPetProfile | null>(null);
+  const { profile, error, isPending } = useUpdateProfile(
+    data,
+    userFromDB?.id,
+    "petCommonInfo"
+  );
 
-  const initialValues = {
-    petName: "",
-    specie: "",
-    age: 0,
-    gender: "Another",
-    color: "",
-    weight: 0,
-  };
+  useEffect(() => {
+    if (profile) {
+      setUserFromDB(profile);
+    }
+  }, [profile, setUserFromDB]);
+
   const genders = ["Male", "Female", "Another"];
   const species: string[] = resources[currentLanguage()].translation.pets;
 
   const schema = object({
-    petName: string().min(2).required(),
+    petName: string()
+      .min(2, "Pet name must be 2 characters and more")
+      .required(),
     specie: string().min(1, "Please select at least one specie").required(),
-    age: number(),
-    gender: string().oneOf(genders),
-    color: string().min(2),
-    weight: number(),
+    age: number().optional(),
+    gender: string().oneOf(genders).optional(),
+    color: string().optional(),
+    weight: number().optional(),
   });
 
   const {
@@ -40,11 +46,10 @@ const PetProfile: FC = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema) as Resolver<IPetProfile>,
-    defaultValues: initialValues,
   });
 
   const onFormSubmit = (data: IPetProfile) => {
-    console.log(data);
+    setData(data);
     reset();
   };
 
@@ -54,12 +59,7 @@ const PetProfile: FC = () => {
       <Styled.Form onSubmit={handleSubmit(onFormSubmit)}>
         <Styled.Label>
           <p>Pet Name</p>
-          <Styled.Input
-            type="text"
-            id="petName"
-            {...register("petName")}
-            defaultValue=""
-          />
+          <Styled.Input type="text" id="petName" {...register("petName")} />
           {errors.petName && (
             <Styled.Error>{errors.petName.message}</Styled.Error>
           )}
@@ -81,7 +81,12 @@ const PetProfile: FC = () => {
 
         <Styled.Label>
           <p>Age (years)</p>
-          <Styled.Input type="number" id="age" {...register("age")} />
+          <Styled.Input
+            type="number"
+            id="age"
+            defaultValue={0}
+            {...register("age")}
+          />
           {errors.age && <Styled.Error>{errors.age.message}</Styled.Error>}
         </Styled.Label>
 
@@ -100,14 +105,33 @@ const PetProfile: FC = () => {
         </Styled.Label>
 
         <Styled.Label>
+          <p>Color</p>
+          <Styled.Input
+            type="text"
+            id="color"
+            {...register("color")}
+            defaultValue=""
+          />
+          {errors.color && <Styled.Error>{errors.color.message}</Styled.Error>}
+        </Styled.Label>
+
+        <Styled.Label>
           <p>Weight (kg)</p>
-          <Styled.Input type="number" id="weight" {...register("weight")} />
+          <Styled.Input
+            type="number"
+            id="weight"
+            defaultValue={0}
+            {...register("weight")}
+          />
           {errors.weight && (
             <Styled.Error>{errors.weight.message}</Styled.Error>
           )}
         </Styled.Label>
 
-        <Styled.Button type="submit">Save</Styled.Button>
+        <Styled.Button type="submit" isPending={isPending} disabled={isPending}>
+          {isPending ? "Saving..." : "Save"}
+          {error && "Sending failed. Repeat"}
+        </Styled.Button>
       </Styled.Form>
     </Styled.ContainerItem>
   );

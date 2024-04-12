@@ -8,6 +8,15 @@ export const currentLanguage = () => {
   return storedLanguage as CurrentLanguage;
 };
 
+export const checkProperties = (obj: { [key: string]: any }): boolean => {
+  for (const key in obj) {
+    if (!obj[key]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export const progressCardList = (userFromDB: IProfileUser, t: TFunction) => {
   const list = [
     {
