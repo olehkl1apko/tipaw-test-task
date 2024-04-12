@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import { FC } from "react";
 import { object, string, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useForm, Resolver } from "react-hook-form";
 
 import * as Styled from "./styled";
 import { resources } from "../../../i18n/translate";
@@ -13,7 +11,7 @@ import { IPetProfile } from "../../modules";
 const PetProfile: FC = () => {
   const initialValues = {
     petName: "",
-    species: "",
+    specie: "",
     age: 0,
     gender: "Male",
     color: "",
@@ -36,8 +34,8 @@ const PetProfile: FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IPetProfile>({
-    resolver: yupResolver(schema),
+  } = useForm({
+    resolver: yupResolver(schema) as Resolver<IPetProfile>,
     defaultValues: initialValues,
   });
 

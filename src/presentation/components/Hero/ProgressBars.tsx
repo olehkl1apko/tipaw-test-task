@@ -7,7 +7,7 @@ type Props = {
 
 const ProgressBars = ({ length, globalProgress }: Props) => {
   const progressBars = Array.from({ length }, (_, index) => {
-    const shouldFill = index < Math.ceil(globalProgress / 25);
+    const shouldFill = index < Math.ceil(globalProgress / (100 / length));
     const ProgressBarComponent = shouldFill
       ? Styled.ProgressBarFilled
       : Styled.ProgressBar;

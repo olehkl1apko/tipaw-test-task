@@ -1,10 +1,10 @@
 import { createContext, FC, useState, ReactNode } from "react";
 
-import { ProfileUser } from "../../presentation/modules";
+import { IProfileUser } from "../../presentation/modules";
 
 export interface UserContextType {
-  userFromDB: ProfileUser | undefined;
-  setUserFromDB: (data: ProfileUser | undefined) => void;
+  userFromDB: IProfileUser | undefined;
+  setUserFromDB: (data: IProfileUser | undefined) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -12,7 +12,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userFromDB, setUserFromDB] = useState<ProfileUser | undefined>(
+  const [userFromDB, setUserFromDB] = useState<IProfileUser | undefined>(
     undefined
   );
 

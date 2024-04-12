@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebase/firebaseConfig";
-import { ProfileUser } from "../../presentation/modules";
+import { IProfileUser } from "../../presentation/modules";
 
 type Payload = {
   name: string;
@@ -39,7 +39,7 @@ export const loginUser = async (payload: Payload) => {
       const updatedDocSnapshot = await getDocs(existingUserQuery);
       const updatedUser = updatedDocSnapshot.docs[0].data();
 
-      return updatedUser as ProfileUser;
+      return updatedUser as IProfileUser;
     }
 
     // if not existing - add to firestore and return new user
@@ -48,14 +48,33 @@ export const loginUser = async (payload: Payload) => {
         name,
         avatar,
         email,
+        commoninfoVerified: false,
         litterVerified: false,
         parentsVerified: false,
         profilePictureIsVerified: false,
         verified,
+        petCommonInfo: {
+          petName: null,
+          specie: null,
+          age: null,
+          gender: "Male",
+          color: null,
+          weight: null,
+        },
+        petParents: {
+          father: null,
+          fatherAwards: null,
+          mother: null,
+          motherAwards: null,
+        },
+        petLitter: {
+          puppies: null,
+          birthDate: null,
+        },
       };
 
       await addDoc(collection(projectFirestore, "users"), newUser);
-      return newUser as ProfileUser;
+      return newUser as IProfileUser;
     }
   } catch (err: any) {
     return err.message;

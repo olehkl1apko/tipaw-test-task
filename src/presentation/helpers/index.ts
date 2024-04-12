@@ -1,5 +1,5 @@
 import { TFunction } from "i18next/typescript/t";
-import { ProfileUser, ProgressList } from "../modules";
+import { IProfileUser, IProgressList } from "../modules";
 
 export const currentLanguage = () => {
   type CurrentLanguage = "fr" | "en" | "nl";
@@ -8,7 +8,7 @@ export const currentLanguage = () => {
   return storedLanguage as CurrentLanguage;
 };
 
-export const progressCardList = (userFromDB: ProfileUser, t: TFunction) => {
+export const progressCardList = (userFromDB: IProfileUser, t: TFunction) => {
   const list = [
     {
       id: 1,
@@ -26,19 +26,26 @@ export const progressCardList = (userFromDB: ProfileUser, t: TFunction) => {
     },
     {
       id: 3,
+      title: t("commoninfo"),
+      descriptionIfFill: t("commoninfoDescription"),
+      descriptionIfEmpty: t("pleasefill"),
+      isCompleted: userFromDB?.commoninfoVerified || false,
+    },
+    {
+      id: 4,
       title: t("parents"),
       descriptionIfFill: t("parentsDescription"),
       descriptionIfEmpty: t("pleasefill"),
       isCompleted: userFromDB?.parentsVerified || false,
     },
     {
-      id: 4,
+      id: 5,
       title: t("litter"),
       descriptionIfFill: t("litterDescription"),
       descriptionIfEmpty: t("pleasefill"),
       isCompleted: userFromDB?.litterVerified || false,
     },
-  ] as ProgressList[];
+  ] as IProgressList[];
 
   const completedCards: number = list.filter((item) => item.isCompleted).length;
   const globalProgress: number = (completedCards / list.length) * 100;

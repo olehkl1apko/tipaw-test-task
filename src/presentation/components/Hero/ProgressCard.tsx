@@ -3,10 +3,10 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useTheme } from "@emotion/react";
 
 import * as Styled from "./styled";
-import { ProgressList } from "../../modules";
+import { IProgressList } from "../../modules";
 
 type Props = {
-  progressList: ProgressList[];
+  progressList: IProgressList[];
 };
 
 const ProgressCard = ({ progressList }: Props) => {

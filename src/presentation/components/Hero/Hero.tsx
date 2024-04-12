@@ -5,13 +5,13 @@ import * as Styled from "./styled";
 import ProgressBars from "./ProgressBars";
 import { useUserContext } from "../../../application/context";
 import ProgressCard from "./ProgressCard";
-import { ProgressList } from "../../modules";
+import { IProgressList } from "../../modules";
 import { progressCardList } from "../../helpers";
 
 const Hero: FC = () => {
   const { t } = useTranslation();
   const { userFromDB } = useUserContext();
-  const [progressList, setProgressList] = useState<ProgressList[]>([]);
+  const [progressList, setProgressList] = useState<IProgressList[]>([]);
   const [globalProgress, setGlobalProgress] = useState<number>(0);
   const [isProfileCompleted, setIsProfileCompleted] = useState<boolean>(false);
 

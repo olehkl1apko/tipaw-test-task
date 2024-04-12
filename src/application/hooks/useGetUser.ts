@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebase/firebaseConfig";
-import { ProfileUser } from "../../presentation/modules";
+import { IProfileUser } from "../../presentation/modules";
 
 export const useGetUser = (email: string) => {
-  const [data, setData] = useState<ProfileUser | null>(null);
+  const [data, setData] = useState<IProfileUser | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
@@ -22,7 +22,7 @@ export const useGetUser = (email: string) => {
         );
         const querySnapshot = await getDocs(req);
         if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data() as ProfileUser;
+          const userData = querySnapshot.docs[0].data() as IProfileUser;
           setData(userData);
         } else {
           setError(true);

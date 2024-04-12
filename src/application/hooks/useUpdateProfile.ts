@@ -11,7 +11,7 @@ import {
 import { projectFirestore } from "../../firebase/firebaseConfig";
 import { IPetProfile } from "../../presentation/modules";
 
-export const useUpdateProfile = (data: IPetProfile, email) => {
+export const useUpdateProfile = (data: IPetProfile, email: string) => {
   const [profile, setProfile] = useState<IPetProfile | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
@@ -31,7 +31,7 @@ export const useUpdateProfile = (data: IPetProfile, email) => {
       try {
         const req = query(
           collection(projectFirestore, "users"),
-          where("email", "==", data.email)
+          where("email", "==", email)
         );
 
         const querySnapshot = await getDocs(req);

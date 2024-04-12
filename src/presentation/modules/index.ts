@@ -34,16 +34,20 @@ export const petSpecies = {
   ],
 };
 
-export type ProfileUser = {
+export type IProfileUser = {
   name: string;
   avatar: string;
   verified: boolean;
+  commoninfoVerified: boolean;
   profilePictureIsVerified: boolean;
   parentsVerified: boolean;
   litterVerified: boolean;
+  petCommonInfo: IPetProfile;
+  petParents: IParents;
+  petLitter: ILitter;
 };
 
-export type AuthUser = {
+export type IAuthUser = {
   email: string;
   email_verified: boolean;
   family_name?: string;
@@ -57,15 +61,27 @@ export type AuthUser = {
 };
 
 export type IPetProfile = {
-  petName: string;
-  species: string;
-  age: number;
-  gender: "Male" | "Female";
-  color: string;
-  weight: number;
+  petName: string | null;
+  specie: string | null;
+  age: number | null;
+  gender: string;
+  color: string | null;
+  weight: number | null;
 };
 
-export type ProgressList = {
+export type IParents = {
+  father: string | null;
+  fatherAwards: number | null;
+  mother: string | null;
+  motherAwards: number | null;
+};
+
+export type ILitter = {
+  puppies: number | null;
+  birthDate: Date | null;
+};
+
+export type IProgressList = {
   id: number;
   title: string;
   descriptionIfFill: string;
@@ -73,7 +89,7 @@ export type ProgressList = {
   isCompleted: boolean;
 };
 
-export type AnnouncementData = {
+export type IAnnouncementData = {
   id: string;
   title: string;
   date: string;
