@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   updateDoc,
@@ -18,11 +19,10 @@ type Payload = {
   verified: boolean;
 };
 
-export const loginUser = async (payload: Payload) => {
+export const loginUser = async (payload: Payload): Promise<IProfileUser> => {
   const { name, avatar, email, verified } = payload;
 
   try {
-    // check if email already exists
     const existingUserQuery = query(
       collection(projectFirestore, "users"),
       where("email", "==", email)
@@ -30,19 +30,8 @@ export const loginUser = async (payload: Payload) => {
 
     const querySnapshot = await getDocs(existingUserQuery);
 
-    //if existing - update user verification and return updated user
-    if (!querySnapshot.empty) {
-      const docId = querySnapshot.docs[0].id;
-      await updateDoc(doc(projectFirestore, "users", docId), {
-        verified,
-      });
-      const updatedDocSnapshot = await getDocs(existingUserQuery);
-      const updatedUser = updatedDocSnapshot.docs[0].data();
+    let userId;
 
-      return updatedUser as IProfileUser;
-    }
-
-    // if not existing - add to firestore and return new user
     if (querySnapshot.empty) {
       const newUser = {
         name,
@@ -57,7 +46,7 @@ export const loginUser = async (payload: Payload) => {
           petName: null,
           specie: null,
           age: null,
-          gender: "Male",
+          gender: "Another",
           color: null,
           weight: null,
         },
@@ -73,9 +62,24 @@ export const loginUser = async (payload: Payload) => {
         },
       };
 
-      await addDoc(collection(projectFirestore, "users"), newUser);
-      return newUser as IProfileUser;
+      const newUserDocRef = await addDoc(
+        collection(projectFirestore, "users"),
+        newUser
+      );
+      userId = newUserDocRef.id;
+    } else {
+      const docId = querySnapshot.docs[0].id;
+      await updateDoc(doc(projectFirestore, "users", docId), {
+        verified,
+      });
+      userId = docId;
     }
+
+    const userDocRef = doc(projectFirestore, "users", userId);
+    const userDocSnapshot = await getDoc(userDocRef);
+
+    const userData = userDocSnapshot.data();
+    return { id: userDocSnapshot.id, ...userData } as IProfileUser;
   } catch (err: any) {
     return err.message;
   }

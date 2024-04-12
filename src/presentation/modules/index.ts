@@ -35,6 +35,7 @@ export const petSpecies = {
 };
 
 export type IProfileUser = {
+  id: string;
   name: string;
   avatar: string;
   verified: boolean;

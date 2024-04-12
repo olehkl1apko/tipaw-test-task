@@ -7,26 +7,30 @@ import * as Styled from "./styled";
 import { resources } from "../../../i18n/translate";
 import { currentLanguage } from "../../helpers";
 import { IPetProfile } from "../../modules";
+import { useUserContext } from "../../../application/context";
 
 const PetProfile: FC = () => {
+  const { userFromDB } = useUserContext();
+  console.log("🚀 ~ userFromDB:", userFromDB)
+
   const initialValues = {
     petName: "",
     specie: "",
     age: 0,
-    gender: "Male",
+    gender: "Another",
     color: "",
     weight: 0,
   };
-  const genders = ["Male", "Female"];
+  const genders = ["Male", "Female", "Another"];
   const species: string[] = resources[currentLanguage()].translation.pets;
 
   const schema = object({
     petName: string().min(2).required(),
     specie: string().min(1, "Please select at least one specie").required(),
-    age: number().required(),
-    gender: string().oneOf(genders).required(),
-    color: string().min(2).required(),
-    weight: number().required(),
+    age: number(),
+    gender: string().oneOf(genders),
+    color: string().min(2),
+    weight: number(),
   });
 
   const {

@@ -9,16 +9,24 @@ import {
 } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebase/firebaseConfig";
-import { IPetProfile } from "../../presentation/modules";
+import {
+  ILitter,
+  IParents,
+  IPetProfile,
+  IProfileUser,
+} from "../../presentation/modules";
 
-export const useUpdateProfile = (data: IPetProfile, email: string) => {
-  const [profile, setProfile] = useState<IPetProfile | null>(null);
+export const useUpdateProfile = (
+  data: IPetProfile | IParents | ILitter,
+  email: string
+) => {
+  const [profile, setProfile] = useState<IProfileUser | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    const updateUser = async () => {
+    const updateProfile = async () => {
       setError(null);
       setIsPending(true);
 
@@ -38,14 +46,12 @@ export const useUpdateProfile = (data: IPetProfile, email: string) => {
 
         if (!querySnapshot.empty) {
           const docId = querySnapshot.docs[0].id;
-          await updateDoc(doc(projectFirestore, "users", docId), {
-            verified: data.email_verified,
-          });
+          await updateDoc(doc(projectFirestore, "users", docId), {});
 
           const updatedDocSnapshot = await getDocs(req);
           const updatedDocData = updatedDocSnapshot.docs[0].data();
 
-          setProfile(updatedDocData as IPetProfile);
+          setProfile(updatedDocData as IProfileUser);
         } else {
           setProfile(null);
         }
@@ -62,10 +68,10 @@ export const useUpdateProfile = (data: IPetProfile, email: string) => {
       }
     };
 
-    updateUser();
+    updateProfile();
 
     return () => setIsCancelled(true);
-  }, [data, isCancelled]);
+  }, [data, email, isCancelled]);
 
   return { profile, error, isPending };
 };
