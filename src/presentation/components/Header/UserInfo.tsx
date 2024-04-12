@@ -27,7 +27,11 @@ const UserInfo: FC = () => {
         </Styled.ChevronButton>
         {isOpenMenu && (
           <Styled.Modal>
-            <button onClick={() => navigate("./profile")}>
+            <button
+              onClick={() => {
+                navigate("./profile"), setIsOpenMenu(false);
+              }}
+            >
               {t("profile")}
             </button>
             <button onClick={() => logout()}>{t("logout")}</button>

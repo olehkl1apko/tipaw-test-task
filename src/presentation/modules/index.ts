@@ -1,4 +1,4 @@
-export const pets = {
+export const petSpecies = {
   en: [
     "Dogs",
     "Cats",
@@ -34,42 +34,6 @@ export const pets = {
   ],
 };
 
-export const occupations = {
-  en: [
-    "Doctor",
-    "Teacher",
-    "Engineer",
-    "Artist",
-    "Chef",
-    "Athlete",
-    "Writer",
-    "Musician",
-    "Another",
-  ],
-  fr: [
-    "Médecin",
-    "Enseignant",
-    "Ingénieur",
-    "Artiste",
-    "Chef",
-    "Athlète",
-    "Écrivain",
-    "Musicien",
-    "Un autre",
-  ],
-  nl: [
-    "Dokter",
-    "Leraar",
-    "Ingenieur",
-    "Artiest",
-    "Chef-kok",
-    "Atleet",
-    "Schrijver",
-    "Muzikant",
-    "Een andere",
-  ],
-};
-
 export type ProfileUser = {
   name: string;
   avatar: string;
@@ -92,13 +56,13 @@ export type AuthUser = {
   updated_at: string;
 };
 
-export type PersonalData = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  occupation: string;
-  avatar: File | null;
+export type IPetProfile = {
+  petName: string;
+  species: string;
+  age: number;
+  gender: "Male" | "Female";
+  color: string;
+  weight: number;
 };
 
 export type ProgressList = {

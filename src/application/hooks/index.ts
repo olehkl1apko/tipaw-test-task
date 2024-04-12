@@ -1,4 +1,4 @@
 import { useGetUser } from "./useGetUser";
-import { useUpdateUser } from "./useUpdateUser";
+import { useUpdateProfile } from "./useUpdateProfile";
 
-export { useGetUser, useUpdateUser };
+export { useGetUser, useUpdateProfile };

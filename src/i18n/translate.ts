@@ -1,4 +1,4 @@
-import { occupations, pets } from "../presentation/modules";
+import { petSpecies } from "../presentation/modules";
 
 export const resources = {
   en: {
@@ -24,8 +24,7 @@ export const resources = {
       cannotUseTipaw: "And cannot use Tipaw for 100%.",
       announcements: "Announcements from TIPAW",
       loginReminder: "Please log in to use the application",
-      pets: pets.en,
-      occupations: occupations.en,
+      pets: petSpecies.en,
       pleasefill: "Please fill this info in you profile",
       pleaseVerify:
         "Please verify you email address - check email from Tipaw and reload the page.",
@@ -56,8 +55,7 @@ export const resources = {
       cannotUseTipaw: "Et ne pouvez PAS utiliser Tipaw à 100%.",
       announcements: "Annonces de TIPAW",
       loginReminder: "Veuillez vous connecter pour utiliser l'application",
-      pets: pets.fr,
-      occupations: occupations.fr,
+      pets: petSpecies.fr,
       pleasefill:
         "S'il vous plaît, remplissez ces informations dans votre profil.",
       pleaseVerify:
@@ -89,8 +87,7 @@ export const resources = {
       cannotUseTipaw: "En kunt Tipaw niet voor 100% gebruiken.",
       announcements: "Mededelingen van TIPAW",
       loginReminder: "Inloggen om de applicatie te gebruiken",
-      pets: pets.nl,
-      occupations: occupations.nl,
+      pets: petSpecies.nl,
       pleasefill: "Vul deze informatie in uw profiel in, alstublieft.",
       pleaseVerify:
         "Controleer uw e-mailadres alstublieft - controleer de e-mail van Tipaw en herlaad de pagina.",

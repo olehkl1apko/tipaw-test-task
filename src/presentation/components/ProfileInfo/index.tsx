@@ -1,13 +1,20 @@
 import { FC } from "react";
-import PersonalInfo from "./PersonalInfo";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
+import PetProfile from "./PetProfile";
 
 const Profile: FC = () => {
+  const { isAuthenticated } = useAuth0();
+
   return (
-    <Styled.Container>
-      <PersonalInfo />
-    </Styled.Container>
+    <>
+      {isAuthenticated && (
+        <Styled.Container>
+          <PetProfile />
+        </Styled.Container>
+      )}
+    </>
   );
 };
 

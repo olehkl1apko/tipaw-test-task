@@ -9,10 +9,10 @@ import {
 } from "firebase/firestore";
 
 import { projectFirestore } from "../../firebase/firebaseConfig";
-import { AuthUser, ProfileUser } from "../../presentation/modules";
+import { IPetProfile } from "../../presentation/modules";
 
-export const useUpdateUser = (user: AuthUser) => {
-  const [userFB, setUserFB] = useState<ProfileUser | null>(null);
+export const useUpdateProfile = (data: IPetProfile, email) => {
+  const [profile, setProfile] = useState<IPetProfile | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
@@ -22,8 +22,8 @@ export const useUpdateUser = (user: AuthUser) => {
       setError(null);
       setIsPending(true);
 
-      if (!user) {
-        setUserFB(null);
+      if (!data) {
+        setProfile(null);
         setIsPending(false);
         return;
       }
@@ -31,7 +31,7 @@ export const useUpdateUser = (user: AuthUser) => {
       try {
         const req = query(
           collection(projectFirestore, "users"),
-          where("email", "==", user.email)
+          where("email", "==", data.email)
         );
 
         const querySnapshot = await getDocs(req);
@@ -39,15 +39,15 @@ export const useUpdateUser = (user: AuthUser) => {
         if (!querySnapshot.empty) {
           const docId = querySnapshot.docs[0].id;
           await updateDoc(doc(projectFirestore, "users", docId), {
-            verified: user.email_verified,
+            verified: data.email_verified,
           });
 
           const updatedDocSnapshot = await getDocs(req);
           const updatedDocData = updatedDocSnapshot.docs[0].data();
 
-          setUserFB(updatedDocData as ProfileUser);
+          setProfile(updatedDocData as IPetProfile);
         } else {
-          setUserFB(null);
+          setProfile(null);
         }
 
         if (!isCancelled) {
@@ -65,7 +65,7 @@ export const useUpdateUser = (user: AuthUser) => {
     updateUser();
 
     return () => setIsCancelled(true);
-  }, [isCancelled, user]);
+  }, [data, isCancelled]);
 
-  return { userFB, error, isPending };
+  return { profile, error, isPending };
 };
