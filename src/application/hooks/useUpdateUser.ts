@@ -8,12 +8,11 @@ import {
   where,
 } from "firebase/firestore";
 
-import { projectFirestore } from "../../firebaseConfig";
-import { ProfileData } from "../../presentation/pages/HomePage/types";
-import { AuthUser } from "../../presentation/modules";
+import { projectFirestore } from "../../firebase/firebaseConfig";
+import { AuthUser, ProfileUser } from "../../presentation/modules";
 
 export const useUpdateUser = (user: AuthUser) => {
-  const [userFB, setUserFB] = useState<ProfileData | null>(null);
+  const [userFB, setUserFB] = useState<ProfileUser | null>(null);
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
@@ -46,7 +45,7 @@ export const useUpdateUser = (user: AuthUser) => {
           const updatedDocSnapshot = await getDocs(req);
           const updatedDocData = updatedDocSnapshot.docs[0].data();
 
-          setUserFB(updatedDocData as ProfileData);
+          setUserFB(updatedDocData as ProfileUser);
         } else {
           setUserFB(null);
         }

@@ -70,13 +70,13 @@ export const occupations = {
   ],
 };
 
-export type PersonalData = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  occupation: string;
-  avatar: File | null;
+export type ProfileUser = {
+  name: string;
+  avatar: string;
+  verified: boolean;
+  profilePictureIsVerified: boolean;
+  parentsVerified: boolean;
+  litterVerified: boolean;
 };
 
 export type AuthUser = {
@@ -90,4 +90,28 @@ export type AuthUser = {
   picture: string;
   sub: string;
   updated_at: string;
+};
+
+export type PersonalData = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  occupation: string;
+  avatar: File | null;
+};
+
+export type ProgressList = {
+  id: number;
+  title: string;
+  descriptionIfFill: string;
+  descriptionIfEmpty: string;
+  isCompleted: boolean;
+};
+
+export type AnnouncementData = {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
 };

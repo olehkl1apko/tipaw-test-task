@@ -1,7 +1,15 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
-import { projectFirestore } from "../../firebaseConfig";
-import { ProfileData } from "../../presentation/pages/HomePage/types";
+import { projectFirestore } from "../../firebase/firebaseConfig";
+import { ProfileUser } from "../../presentation/modules";
 
 type Payload = {
   name: string;
@@ -22,13 +30,19 @@ export const loginUser = async (payload: Payload) => {
 
     const querySnapshot = await getDocs(existingUserQuery);
 
-    //return existing user
+    //if existing - update user verification and return updated user
     if (!querySnapshot.empty) {
-      const existingUser = querySnapshot.docs[0].data();
-      return existingUser as ProfileData;
+      const docId = querySnapshot.docs[0].id;
+      await updateDoc(doc(projectFirestore, "users", docId), {
+        verified,
+      });
+      const updatedDocSnapshot = await getDocs(existingUserQuery);
+      const updatedUser = updatedDocSnapshot.docs[0].data();
+
+      return updatedUser as ProfileUser;
     }
 
-    // add user to db
+    // if not existing - add to firestore and return new user
     if (querySnapshot.empty) {
       const newUser = {
         name,
@@ -38,11 +52,10 @@ export const loginUser = async (payload: Payload) => {
         parentsVerified: false,
         profilePictureIsVerified: false,
         verified,
-        globalProgress: verified ? 25 : 0,
       };
 
       await addDoc(collection(projectFirestore, "users"), newUser);
-      return newUser as ProfileData;
+      return newUser as ProfileUser;
     }
   } catch (err: any) {
     return err.message;

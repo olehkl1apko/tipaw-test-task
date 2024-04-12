@@ -3,7 +3,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useTheme } from "@emotion/react";
 
 import * as Styled from "./styled";
-import { ProgressList } from "./Hero";
+import { ProgressList } from "../../modules";
 
 type Props = {
   progressList: ProgressList[];

@@ -1,55 +1,28 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import ProgressBars from "./ProgressBars";
 import { useUserContext } from "../../../application/context";
 import ProgressCard from "./ProgressCard";
-
-export type ProgressList = {
-  id: number;
-  title: string;
-  descriptionIfFill: string;
-  descriptionIfEmpty: string;
-  isCompleted: boolean;
-};
+import { ProgressList } from "../../modules";
+import { progressCardList } from "../../helpers";
 
 const Hero: FC = () => {
   const { t } = useTranslation();
   const { userFromDB } = useUserContext();
+  const [progressList, setProgressList] = useState<ProgressList[]>([]);
+  const [globalProgress, setGlobalProgress] = useState<number>(0);
+  const [isProfileCompleted, setIsProfileCompleted] = useState<boolean>(false);
 
-  const progressList: ProgressList[] = [
-    {
-      id: 1,
-      title: t("verification"),
-      descriptionIfFill: t("verificationDescription"),
-      descriptionIfEmpty: t("pleaseVerify"),
-      isCompleted: userFromDB?.verified || false,
-    },
-    {
-      id: 2,
-      title: t("profilePicture"),
-      descriptionIfFill: t("profilePictureDescription"),
-      descriptionIfEmpty: t("pleasefill"),
-      isCompleted: userFromDB?.profilePictureIsVerified || false,
-    },
-    {
-      id: 3,
-      title: t("parents"),
-      descriptionIfFill: t("parentsDescription"),
-      descriptionIfEmpty: t("pleasefill"),
-      isCompleted: userFromDB?.parentsVerified || false,
-    },
-    {
-      id: 4,
-      title: t("litter"),
-      descriptionIfFill: t("litterDescription"),
-      descriptionIfEmpty: t("pleasefill"),
-      isCompleted: userFromDB?.litterVerified || false,
-    },
-  ];
-
-  const isProfileCompleted = userFromDB?.globalProgress === 100;
+  useEffect(() => {
+    if (userFromDB) {
+      const progressList = progressCardList(userFromDB, t);
+      setProgressList(progressList.list);
+      setGlobalProgress(progressList.globalProgress);
+      setIsProfileCompleted(progressList.globalProgress === 100);
+    }
+  }, [t, userFromDB]);
 
   return (
     <Styled.HeroWrapper>
@@ -73,13 +46,11 @@ const Hero: FC = () => {
         <Styled.ProgressWrapper>
           <Styled.TextWrapper>
             <Styled.Text>{t("profileCompleted")}</Styled.Text>
-            <Styled.Percentage>
-              {userFromDB?.globalProgress || 0}%
-            </Styled.Percentage>
+            <Styled.Percentage>{globalProgress || 0}%</Styled.Percentage>
           </Styled.TextWrapper>
           <ProgressBars
             length={progressList.length}
-            globalProgress={userFromDB?.globalProgress || 0}
+            globalProgress={globalProgress || 0}
           />
         </Styled.ProgressWrapper>
       </Styled.CompletedWrapper>
