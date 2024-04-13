@@ -17,6 +17,13 @@ export const checkProperties = (obj: { [key: string]: any }): boolean => {
   return true;
 };
 
+export const convertFirestoreTimestampToDate = (
+  timestamp: any
+): Date | null => {
+  if (!timestamp) return null;
+  return new Date(timestamp.seconds * 1000);
+};
+
 export const progressCardList = (userFromDB: IProfileUser, t: TFunction) => {
   const list = [
     {

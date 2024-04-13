@@ -2,12 +2,12 @@ import { FC, useEffect, useState } from "react";
 import { object, string, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Resolver } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import { IParents } from "../../modules";
 import { useUserContext } from "../../../application/context";
 import { useUpdateProfile } from "../../../application/hooks";
-import { useTranslation } from "react-i18next";
 
 const Parents: FC = () => {
   const { t } = useTranslation();
@@ -47,9 +47,9 @@ const Parents: FC = () => {
   };
 
   return (
-    <Styled.ContainerItem typeForm="petParents">
-      <Styled.Title>{t("petparents")}</Styled.Title>
-      <Styled.Form onSubmit={handleSubmit(onFormSubmit)}>
+    <Styled.Form onSubmit={handleSubmit(onFormSubmit)} typeForm="petParents">
+      <Styled.Wrapper>
+        <Styled.Title>{t("petparents")}</Styled.Title>
         <Styled.Label>
           <p>{t("fathersPet")}</p>
           <Styled.Input
@@ -101,18 +101,18 @@ const Parents: FC = () => {
             <Styled.Error>{errors.motherAwards.message}</Styled.Error>
           )}
         </Styled.Label>
+      </Styled.Wrapper>
 
-        <Styled.Button
-          type="submit"
-          isPending={isPending}
-          typeForm="petParents"
-          disabled={isPending}
-        >
-          {isPending ? t("saving") : t("save")}
-          {error && t("sendingFailed")}
-        </Styled.Button>
-      </Styled.Form>
-    </Styled.ContainerItem>
+      <Styled.Button
+        type="submit"
+        isPending={isPending}
+        typeForm="petParents"
+        disabled={isPending}
+      >
+        {isPending ? t("saving") : t("save")}
+        {error && t("sendingFailed")}
+      </Styled.Button>
+    </Styled.Form>
   );
 };
 

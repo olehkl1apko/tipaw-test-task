@@ -36,6 +36,7 @@ export const theme = {
     },
     green: {
       default: "#03c9a9",
+      tint: "#4CD2BA",
       glass: "#e4fdf0",
     },
     yellow: { default: "#ffcc01", tint: "#FFEECC" },

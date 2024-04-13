@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { object, string, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Resolver } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import { resources } from "../../../i18n/translate";
@@ -9,7 +10,6 @@ import { currentLanguage } from "../../helpers";
 import { IPetProfile } from "../../modules";
 import { useUserContext } from "../../../application/context";
 import { useUpdateProfile } from "../../../application/hooks";
-import { useTranslation } from "react-i18next";
 
 const PetProfile: FC = () => {
   const { t } = useTranslation();
@@ -54,9 +54,9 @@ const PetProfile: FC = () => {
   };
 
   return (
-    <Styled.ContainerItem>
-      <Styled.Title>{t("petCommonInfo")}</Styled.Title>
-      <Styled.Form onSubmit={handleSubmit(onFormSubmit)}>
+    <Styled.Form onSubmit={handleSubmit(onFormSubmit)}>
+      <Styled.Wrapper>
+        <Styled.Title>{t("petCommonInfo")}</Styled.Title>
         <Styled.Label>
           <p>{t("petName")}</p>
           <Styled.Input
@@ -138,13 +138,13 @@ const PetProfile: FC = () => {
             <Styled.Error>{errors.weight.message}</Styled.Error>
           )}
         </Styled.Label>
+      </Styled.Wrapper>
 
-        <Styled.Button type="submit" isPending={isPending} disabled={isPending}>
-          {isPending ? t("saving") : t("save")}
-          {error && t("sendingFailed")}
-        </Styled.Button>
-      </Styled.Form>
-    </Styled.ContainerItem>
+      <Styled.Button type="submit" isPending={isPending} disabled={isPending}>
+        {isPending ? t("saving") : t("save")}
+        {error && t("sendingFailed")}
+      </Styled.Button>
+    </Styled.Form>
   );
 };
 
