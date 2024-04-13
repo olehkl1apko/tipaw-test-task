@@ -10,7 +10,7 @@ export const currentLanguage = () => {
 
 export const checkProperties = (obj: { [key: string]: any }): boolean => {
   for (const key in obj) {
-    if (!obj[key]) {
+    if (!obj[key] && obj[key] !== 0) {
       return false;
     }
   }

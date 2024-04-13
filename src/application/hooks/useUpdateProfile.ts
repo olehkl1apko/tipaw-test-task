@@ -47,13 +47,22 @@ export const useUpdateProfile = (
             };
             break;
           case "petParents":
-            updateFields = { petParents: data as IParents };
+            updateFields = {
+              petParents: data as IParents,
+              parentsVerified: checkProperties(data),
+            };
             break;
           case "petLitter":
-            updateFields = { petLitter: data as ILitter };
+            updateFields = {
+              petLitter: data as ILitter,
+              litterVerified: checkProperties(data),
+            };
             break;
           case "photos":
-            updateFields = { photos: data as IPhotos };
+            updateFields = {
+              photos: data as IPhotos,
+              profilePictureIsVerified: Array.isArray(data) && data.length > 0,
+            };
             break;
           default:
             break;

@@ -69,12 +69,12 @@ export type IProfileUser = {
 };
 
 export type IPetProfile = {
-  petName: string;
-  specie: string;
-  age: number;
-  gender: string;
-  color: string;
-  weight: number;
+  petName: string | null;
+  specie: string | null;
+  age: number | null;
+  gender: string | null;
+  color: string | null;
+  weight: number | null;
 };
 
 export type IParents = {
@@ -89,7 +89,7 @@ export type ILitter = {
   birthDate: Date | null;
 };
 
-export type IPhotos = string[];
+export type IPhotos = string[] | null;
 
 export type IProgressList = {
   id: number;
