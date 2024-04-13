@@ -61,7 +61,7 @@ export const useUpdateProfile = (
           case "photos":
             updateFields = {
               photos: data as IPhotos,
-              profilePictureIsVerified: Array.isArray(data) && data.length > 0,
+              profilePictureIsVerified: true,
             };
             break;
           default:
