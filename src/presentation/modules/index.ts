@@ -34,6 +34,12 @@ export const petSpecies = {
   ],
 };
 
+export const genders = {
+  en: ["Male", "Female", "Another"],
+  fr: ["Mâle", "Femelle", "Autre"],
+  nl: ["Mannelijk", "Vrouwelijk", "Ander"],
+};
+
 export type IAuthUser = {
   email: string;
   email_verified: boolean;

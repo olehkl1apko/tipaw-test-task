@@ -1,4 +1,4 @@
-import { petSpecies } from "../presentation/modules";
+import { genders, petSpecies } from "../presentation/modules";
 
 export const resources = {
   en: {
@@ -27,11 +27,24 @@ export const resources = {
       announcements: "Announcements from TIPAW",
       loginReminder: "Please log in to use the application",
       pets: petSpecies.en,
+      genres: genders.en,
       pleasefill: "Please fill this info in your profile",
       pleaseVerify:
         "Please verify you email address - check email from Tipaw and reload the page.",
       errorMsg:
         "An unexpected error occurred while retrieving user data. Please try again later.",
+      petnamemustbe: "Pet name must be 2 characters and more",
+      pleaseSelectSpecies: "Please select at least one specie",
+      petCommonInfo: "Pet Common Info",
+      petName: "Pet Name",
+      species: "Specie",
+      age: "Age (years)",
+      gender: "Gender",
+      color: "Color",
+      weight: "Weight (kg)",
+      saving: "Saving...",
+      save: "Save",
+      sendingFailed: "Sending failed. Repeat",
     },
   },
   fr: {
@@ -61,12 +74,25 @@ export const resources = {
       announcements: "Annonces de TIPAW",
       loginReminder: "Veuillez vous connecter pour utiliser l'application",
       pets: petSpecies.fr,
+      genres: genders.fr,
       pleasefill:
         "S'il vous plaît, remplissez ces informations dans votre profil.",
       pleaseVerify:
         "Veuillez vérifier votre adresse e-mail - vérifiez l'e-mail de Tipaw et recharge la page.",
       errorMsg:
         "Une erreur inattendue s'est produite lors de la récupération des données utilisateur. Veuillez réessayer plus tard.",
+      petnamemustbe: "Le nom de l'animal doit comporter au moins 2 caractères.",
+      pleaseSelectSpecies: "Veuillez sélectionner au moins une espèce",
+      petCommonInfo: "Informations communes sur votre animal de compagnie",
+      petName: "Nom de l'animal",
+      species: "Espèce",
+      age: "Âge (années)",
+      gender: "Genre",
+      color: "Couleur",
+      weight: "Poids (kg)",
+      saving: "Enregistrement...",
+      save: "Enregistrer",
+      sendingFailed: "Échec de l'envoi. Répéter",
     },
   },
   nl: {
@@ -96,11 +122,25 @@ export const resources = {
       announcements: "Mededelingen van TIPAW",
       loginReminder: "Inloggen om de applicatie te gebruiken",
       pets: petSpecies.nl,
+      genres: genders.nl,
       pleasefill: "Vul deze informatie in uw profiel in, alstublieft.",
       pleaseVerify:
         "Controleer uw e-mailadres alstublieft - controleer de e-mail van Tipaw en herlaad de pagina.",
       errorMsg:
         "Er is een onverwachte fout opgetreden bij het ophalen van gebruikersgegevens. Probeer het later opnieuw.",
+      petnamemustbe:
+        "De naam van het huisdier moet minimaal 2 tekens bevatten.",
+      pleaseSelectSpecies: "Selecteer minstens één soort",
+      petCommonInfo: "Algemene informatie over uw huisdier",
+      petName: "Naam van het huisdier",
+      species: "Soort",
+      age: "Leeftijd (jaren)",
+      gender: "Geslacht",
+      color: "Kleur",
+      weight: "Gewicht (kg)",
+      saving: "Bezig met opslaan...",
+      save: "Opslaan",
+      sendingFailed: "Verzending mislukt. Herhaal",
     },
   },
 };
