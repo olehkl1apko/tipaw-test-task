@@ -72,6 +72,7 @@ const Photos: FC = () => {
       const files = Array.from(data.images);
       setFiles(files);
       reset();
+      setImagesPreview([]);
     }
   };
 
@@ -81,11 +82,11 @@ const Photos: FC = () => {
 
       {imagesPreview.length > 0 && (
         <Styled.PreviewContainer>
-          {imagesPreview.map((previewURL, index) => (
+          {imagesPreview.map((previewURL) => (
             <Styled.ImagePreview
-              key={index}
+              key={previewURL}
               src={previewURL}
-              alt={`Preview ${index}`}
+              alt={`Preview ${previewURL}`}
             />
           ))}
         </Styled.PreviewContainer>
@@ -103,6 +104,17 @@ const Photos: FC = () => {
         {errors.images && <Styled.Error>{errors.images.message}</Styled.Error>}
       </Styled.Label>
       <SaveButton isPending={isPending} error={error} typeForm="photos" />
+
+      {userFromDB?.photos && userFromDB?.photos.length > 0 && (
+        <Styled.PhotosContainer>
+          <Styled.PhotoTitle>Uploaded photos</Styled.PhotoTitle>
+          <Styled.PreviewContainer>
+            {userFromDB?.photos.map((photo) => (
+              <Styled.ImagePreview key={photo} src={photo} alt={photo} />
+            ))}
+          </Styled.PreviewContainer>
+        </Styled.PhotosContainer>
+      )}
     </Styled.Form>
   );
 };

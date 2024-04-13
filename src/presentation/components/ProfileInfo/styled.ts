@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import DatePicker from "react-datepicker";
 
 interface ButtonProps {
-  isPending: boolean;
+  isPending?: boolean;
 }
 
 interface TypesProps {
@@ -12,7 +12,7 @@ interface TypesProps {
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   justify-content: space-between;
   padding: 40px;
 
@@ -29,10 +29,14 @@ export const Form = styled.form<TypesProps>`
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  width: calc((100% - 80px) / 2);
-  min-width: 340px;
+  width: calc((100% - 120px) / 2);
+  min-width: 324px;
   background-color: ${({ theme, typeForm }) =>
-    typeForm ? theme.color.green.glass : theme.color.light.shadeLighter};
+    typeForm == "petParents"
+      ? theme.color.green.glass
+      : typeForm == "petLitter"
+      ? theme.color.purple.tint
+      : theme.color.light.shadeLighter};
 
   @media screen and (max-width: 767px) {
     width: 500px;
@@ -90,13 +94,17 @@ export const Button = styled.button<ButtonProps & TypesProps>`
   border-radius: 4px;
   align-self: center;
   justify-self: flex-end;
-  margin-top: ${({ typeForm }) => typeForm === "photos" && "16px"};
+  margin-top: ${({ typeForm }) => typeForm === "photos" && "12px"};
   border: none;
   background-color: ${({ theme, isPending, typeForm }) =>
-    typeForm
+    typeForm == "petParents"
       ? isPending
         ? theme.color.green.tint
         : theme.color.green.default
+      : typeForm == "petLitter"
+      ? isPending
+        ? theme.color.purple.tint
+        : theme.color.purple.default
       : isPending
       ? theme.color.blue.default
       : theme.color.blue.darkerBlue};
@@ -129,4 +137,18 @@ export const ImagePreview = styled.img`
   object-fit: cover;
   margin-right: 10px;
   margin-bottom: 10px;
+`;
+
+export const PhotosContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 28px;
+`;
+
+export const PhotoTitle = styled.h4`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.color.purple.default};
 `;

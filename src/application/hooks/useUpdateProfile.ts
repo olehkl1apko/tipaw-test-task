@@ -28,7 +28,7 @@ export const useUpdateProfile = (
       setError(null);
       setIsPending(true);
 
-      if (!data || !userId) {
+      if (!data || (Array.isArray(data) && data.length === 0) || !userId) {
         setProfile(null);
         setIsPending(false);
         return;

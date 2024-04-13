@@ -16,8 +16,8 @@ const Profile: FC = () => {
         <Styled.Container>
           <PetProfile />
           <Parents />
-          <Photos />
           <Litter />
+          <Photos />
         </Styled.Container>
       )}
     </>
