@@ -10,6 +10,7 @@ import { ILitter } from "../../modules";
 import { useUserContext } from "../../../application/context";
 import { useUpdateProfile } from "../../../application/hooks";
 import { convertFirestoreTimestampToDate } from "../../helpers";
+import SaveButton from "./SaveButton";
 
 const Litter: FC = () => {
   const { t } = useTranslation();
@@ -70,7 +71,7 @@ const Litter: FC = () => {
         </Styled.Label>
 
         <Styled.Label>
-          <p>{t("birthDateLitter")}</p>
+          <p>{t("birthdayOfLitter")}</p>
           <Styled.DateInput
             id="birthDate"
             selected={selectedDate}
@@ -82,15 +83,7 @@ const Litter: FC = () => {
         </Styled.Label>
       </Styled.Wrapper>
 
-      <Styled.Button
-        type="submit"
-        isPending={isPending}
-        typeForm="petLitter"
-        disabled={isPending}
-      >
-        {isPending ? t("saving") : t("save")}
-        {error && t("sendingFailed")}
-      </Styled.Button>
+      <SaveButton isPending={isPending} typeForm="petLitter" error={error} />
     </Styled.Form>
   );
 };

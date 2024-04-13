@@ -50,6 +50,9 @@ export const resources = {
       mothersPet: "Pet's mother",
       numberOfAwardsFather: "The number of awards of the pet's father",
       numberOfAwardsMother: "The number of awards of the pet's mother",
+      petLitter: "Pet's litter",
+      numberOfPuppies: "Number of puppies",
+      birthdayOfLitter: "Birthday of litter",
     },
   },
   fr: {
@@ -103,6 +106,9 @@ export const resources = {
       mothersPet: "Mère de l'animal",
       numberOfAwardsFather: "Nombre de récompenses du père de l'animal",
       numberOfAwardsMother: "Nombre de récompenses de la mère de l'animal",
+      petLitter: "Portée de l'animal",
+      numberOfPuppies: "Nombre de chiots",
+      birthdayOfLitter: "Date de naissance de la portée",
     },
   },
   nl: {
@@ -155,6 +161,9 @@ export const resources = {
       mothersPet: "Moeder van het huisdier",
       numberOfAwardsFather: "Aantal prijzen van de vader van het huisdier",
       numberOfAwardsMother: "Aantal prijzen van de moeder van het huisdier",
+      petLitter: "Nest van het huisdier",
+      numberOfPuppies: "Aantal puppy's",
+      birthdayOfLitter: "Geboortedatum van het nest",
     },
   },
 };

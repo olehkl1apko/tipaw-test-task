@@ -10,6 +10,7 @@ import { currentLanguage } from "../../helpers";
 import { IPetProfile } from "../../modules";
 import { useUserContext } from "../../../application/context";
 import { useUpdateProfile } from "../../../application/hooks";
+import SaveButton from "./SaveButton";
 
 const PetProfile: FC = () => {
   const { t } = useTranslation();
@@ -140,10 +141,7 @@ const PetProfile: FC = () => {
         </Styled.Label>
       </Styled.Wrapper>
 
-      <Styled.Button type="submit" isPending={isPending} disabled={isPending}>
-        {isPending ? t("saving") : t("save")}
-        {error && t("sendingFailed")}
-      </Styled.Button>
+      <SaveButton isPending={isPending} error={error} />
     </Styled.Form>
   );
 };

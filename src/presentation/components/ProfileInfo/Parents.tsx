@@ -8,6 +8,7 @@ import * as Styled from "./styled";
 import { IParents } from "../../modules";
 import { useUserContext } from "../../../application/context";
 import { useUpdateProfile } from "../../../application/hooks";
+import SaveButton from "./SaveButton";
 
 const Parents: FC = () => {
   const { t } = useTranslation();
@@ -103,15 +104,7 @@ const Parents: FC = () => {
         </Styled.Label>
       </Styled.Wrapper>
 
-      <Styled.Button
-        type="submit"
-        isPending={isPending}
-        typeForm="petParents"
-        disabled={isPending}
-      >
-        {isPending ? t("saving") : t("save")}
-        {error && t("sendingFailed")}
-      </Styled.Button>
+      <SaveButton isPending={isPending} typeForm="petParents" error={error} />
     </Styled.Form>
   );
 };
