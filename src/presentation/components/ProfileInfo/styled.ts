@@ -90,6 +90,7 @@ export const Button = styled.button<ButtonProps & TypesProps>`
   border-radius: 4px;
   align-self: center;
   justify-self: flex-end;
+  margin-top: ${({ typeForm }) => typeForm === "photos" && "16px"};
   border: none;
   background-color: ${({ theme, isPending, typeForm }) =>
     typeForm
@@ -114,4 +115,18 @@ export const Error = styled.p`
   font-weight: 400;
   line-height: 1.4;
   color: ${({ theme }) => theme.color.red.default};
+`;
+
+export const PreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+`;
+
+export const ImagePreview = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  margin-bottom: 10px;
 `;

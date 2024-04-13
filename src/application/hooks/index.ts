@@ -1,4 +1,4 @@
-import { useGetUser } from "./useGetUser";
 import { useUpdateProfile } from "./useUpdateProfile";
+import { useUploadPhotos } from "./useUploadPhotos";
 
-export { useGetUser, useUpdateProfile };
+export { useUpdateProfile, useUploadPhotos };

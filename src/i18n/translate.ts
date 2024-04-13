@@ -53,6 +53,7 @@ export const resources = {
       petLitter: "Pet's litter",
       numberOfPuppies: "Number of puppies",
       birthdayOfLitter: "Birthday of litter",
+      uploadingPhotos: "Uploading photos of your pet",
     },
   },
   fr: {
@@ -109,6 +110,7 @@ export const resources = {
       petLitter: "Portée de l'animal",
       numberOfPuppies: "Nombre de chiots",
       birthdayOfLitter: "Date de naissance de la portée",
+      uploadingPhotos: "Téléchargement des photos de votre animal de compagnie",
     },
   },
   nl: {
@@ -164,6 +166,7 @@ export const resources = {
       petLitter: "Nest van het huisdier",
       numberOfPuppies: "Aantal puppy's",
       birthdayOfLitter: "Geboortedatum van het nest",
+      uploadingPhotos: "Foto's van uw huisdier uploaden",
     },
   },
 };

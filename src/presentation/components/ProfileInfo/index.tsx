@@ -5,6 +5,7 @@ import * as Styled from "./styled";
 import PetProfile from "./PetProfile";
 import Parents from "./Parents";
 import Litter from "./Litter";
+import Photos from "./Photos";
 
 const Profile: FC = () => {
   const { isAuthenticated } = useAuth0();
@@ -15,6 +16,7 @@ const Profile: FC = () => {
         <Styled.Container>
           <PetProfile />
           <Parents />
+          <Photos />
           <Litter />
         </Styled.Container>
       )}
