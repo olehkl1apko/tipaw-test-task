@@ -53,6 +53,7 @@ export const resources = {
       numberOfPuppies: "Number of puppies",
       birthdayOfLitter: "Birthday of litter",
       uploadingPhotos: "Uploading photos of your pet",
+      uploadedPhotos: "Uploaded photos",
       completeProfile:
         "Complete your pet's profile 100% and get access to useful tips on caring for and raising your pet here",
       announcements: "Announcements from TIPAW",
@@ -113,6 +114,7 @@ export const resources = {
       numberOfPuppies: "Nombre de chiots",
       birthdayOfLitter: "Date de naissance de la portée",
       uploadingPhotos: "Téléchargement des photos de votre animal de compagnie",
+      uploadedPhotos: "Photos téléchargées",
       completeProfile:
         "Complétez le profil de votre animal à 100% et obtenez des conseils utiles sur les soins et l'éducation de votre animal ici",
       announcements: "Annonces de TIPAW",
@@ -172,6 +174,7 @@ export const resources = {
       numberOfPuppies: "Aantal puppy's",
       birthdayOfLitter: "Geboortedatum van het nest",
       uploadingPhotos: "Foto's van uw huisdier uploaden",
+      uploadedPhotos: "Geüploade foto's",
       completeProfile:
         "Voltooi het profiel van uw huisdier voor 100% en krijg toegang tot nuttige tips over de verzorging en opvoeding van uw huisdier hier",
       announcements: "Mededelingen van TIPAW",

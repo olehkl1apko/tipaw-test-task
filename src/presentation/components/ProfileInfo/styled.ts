@@ -5,6 +5,10 @@ interface ButtonProps {
   isPending?: boolean;
 }
 
+interface InputProps {
+  typeInput?: string;
+}
+
 interface TypesProps {
   typeForm?: string;
 }
@@ -64,12 +68,14 @@ export const Label = styled.div`
   color: ${({ theme }) => theme.color.black.default};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   width: 100%;
   padding: 4px;
   border-radius: 4px;
   border: none;
-  box-shadow: 1px 1px 1px ${({ theme }) => theme.color.medium.default};
+  box-shadow: 1px 1px 1px
+    ${({ theme, typeInput }) =>
+      typeInput === "file" ? "none" : theme.color.medium.default};
 `;
 
 export const DateInput = styled(DatePicker)`

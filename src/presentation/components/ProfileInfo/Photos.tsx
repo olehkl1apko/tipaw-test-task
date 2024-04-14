@@ -95,6 +95,7 @@ const Photos: FC = () => {
       <Styled.Label>
         <Styled.Input
           type="file"
+          typeInput="file"
           id="images"
           accept="images/*"
           multiple
@@ -107,7 +108,7 @@ const Photos: FC = () => {
 
       {userFromDB?.photos && userFromDB?.photos.length > 0 && (
         <Styled.PhotosContainer>
-          <Styled.PhotoTitle>Uploaded photos</Styled.PhotoTitle>
+          <Styled.PhotoTitle>{t("uploadedPhotos")}</Styled.PhotoTitle>
           <Styled.PreviewContainer>
             {userFromDB?.photos.map((photo) => (
               <Styled.ImagePreview key={photo} src={photo} alt={photo} />
