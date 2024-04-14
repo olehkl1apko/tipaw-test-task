@@ -32,7 +32,7 @@ export const Dot = styled.div`
   background-color: ${({ theme }) => theme.color.red.default};
 `;
 
-export const ArticleWrapper = styled.div`
+export const ArticleWrapper = styled.button`
   display: flex;
   flex-direction: column;
 `;
@@ -47,6 +47,7 @@ export const ContentWrapper = styled.div<ContentWrapperProps>`
 `;
 
 export const ArticleHeader = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 12px 24px;
@@ -60,8 +61,6 @@ export const ArticleTitle = styled.h4`
   font-weight: 700;
   line-height: 1.5;
 `;
-
-export const ChevronButton = styled.button``;
 
 export const Date = styled.div`
   display: flex;
@@ -83,6 +82,7 @@ export const Content = styled.p`
   font-weight: 400;
   line-height: 1.5;
   padding: 0px 24px 16px 24px;
+  text-align: start;
 
   @media screen and (max-width: 425px) {
     font-size: 14px;

@@ -6,9 +6,9 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
-import { announcements } from "../../modules";
 import { useUserContext } from "../../../application/context";
-import { progressCardList } from "../../helpers";
+import { currentLanguage, progressCardList } from "../../helpers";
+import { resources } from "../../../i18n/translate";
 
 const Announcements: FC = () => {
   const { userFromDB } = useUserContext();
@@ -16,24 +16,27 @@ const Announcements: FC = () => {
   const { t } = useTranslation();
   const [isFullProgress, setIsFullProgress] = useState(false);
 
+  const announcementList =
+    resources[currentLanguage()].translation.announcementList;
+
   const [expandedAnnouncements, setExpandedAnnouncements] = useState<
     Record<string, boolean>
   >({});
 
   useEffect(() => {
     const initialExpandedState: Record<string, boolean> = {};
-    announcements.forEach((announcement) => {
+    announcementList.forEach((announcement) => {
       initialExpandedState[announcement.id] = false;
     });
     setExpandedAnnouncements(initialExpandedState);
-  }, []);
+  }, [announcementList]);
 
   useEffect(() => {
     if (userFromDB) {
       const globalProgress = progressCardList(userFromDB, t).globalProgress;
       setIsFullProgress(globalProgress === 100);
     }
-  }, []);
+  }, [t, userFromDB]);
 
   const toggleAnnouncement = (id: string) => {
     setExpandedAnnouncements((prevState) => ({
@@ -50,23 +53,22 @@ const Announcements: FC = () => {
             <Styled.Title>{t("announcements")}</Styled.Title>
             <Styled.Dot></Styled.Dot>
           </Styled.TitleWrapper>
-          {announcements.map((announcement) => (
-            <Styled.ArticleWrapper key={announcement.id}>
+          {announcementList.map((announcement) => (
+            <Styled.ArticleWrapper
+              key={announcement.id}
+              onClick={() => toggleAnnouncement(announcement.id)}
+            >
               <Styled.ArticleHeader>
                 <Styled.ArticleTitle>{announcement.title}</Styled.ArticleTitle>
-                <Styled.ChevronButton
-                  onClick={() => toggleAnnouncement(announcement.id)}
-                >
-                  <BiChevronDown
-                    size={24}
-                    fill={theme.color.light.default}
-                    style={{
-                      transform: expandedAnnouncements[announcement.id]
-                        ? ""
-                        : "rotate(180deg)",
-                    }}
-                  />
-                </Styled.ChevronButton>
+                <BiChevronDown
+                  size={24}
+                  fill={theme.color.light.default}
+                  style={{
+                    transform: expandedAnnouncements[announcement.id]
+                      ? ""
+                      : "rotate(180deg)",
+                  }}
+                />
               </Styled.ArticleHeader>
               <Styled.ContentWrapper
                 expanded={expandedAnnouncements[announcement.id]}
@@ -84,10 +86,7 @@ const Announcements: FC = () => {
         </>
       )}
       {!isFullProgress && (
-        <Styled.NotFullProgress>
-          Complete your pet's profile 100% and get access to useful tips on
-          caring for and raising your pet here
-        </Styled.NotFullProgress>
+        <Styled.NotFullProgress>{t("completeProfile")}</Styled.NotFullProgress>
       )}
     </Styled.Container>
   );

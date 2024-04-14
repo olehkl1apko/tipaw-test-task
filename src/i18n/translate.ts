@@ -1,4 +1,4 @@
-import { genders, petSpecies } from "../presentation/modules";
+import { announcements, genders, petSpecies } from "../presentation/modules";
 
 export const resources = {
   en: {
@@ -24,7 +24,6 @@ export const resources = {
       canUseTipaw: "Now you can use Tipaw for 100% 🎉",
       incompleteProfileMessage: "You have not completed your profile yet.",
       cannotUseTipaw: "And cannot use Tipaw for 100%.",
-      announcements: "Announcements from TIPAW",
       loginReminder: "Please log in to use the application",
       pets: petSpecies.en,
       genres: genders.en,
@@ -54,6 +53,10 @@ export const resources = {
       numberOfPuppies: "Number of puppies",
       birthdayOfLitter: "Birthday of litter",
       uploadingPhotos: "Uploading photos of your pet",
+      completeProfile:
+        "Complete your pet's profile 100% and get access to useful tips on caring for and raising your pet here",
+      announcements: "Announcements from TIPAW",
+      announcementList: announcements.en,
     },
   },
   fr: {
@@ -80,7 +83,6 @@ export const resources = {
       canUseTipaw: "Maintenant, vous pouvez utiliser Tipaw à 100% 🎉",
       incompleteProfileMessage: "Vous n'avez pas encore complété votre profil.",
       cannotUseTipaw: "Et ne pouvez PAS utiliser Tipaw à 100%.",
-      announcements: "Annonces de TIPAW",
       loginReminder: "Veuillez vous connecter pour utiliser l'application",
       pets: petSpecies.fr,
       genres: genders.fr,
@@ -111,6 +113,10 @@ export const resources = {
       numberOfPuppies: "Nombre de chiots",
       birthdayOfLitter: "Date de naissance de la portée",
       uploadingPhotos: "Téléchargement des photos de votre animal de compagnie",
+      completeProfile:
+        "Complétez le profil de votre animal à 100% et obtenez des conseils utiles sur les soins et l'éducation de votre animal ici",
+      announcements: "Annonces de TIPAW",
+      announcementList: announcements.fr,
     },
   },
   nl: {
@@ -137,7 +143,6 @@ export const resources = {
       canUseTipaw: "Nu kunt u Tipaw voor 100% gebruiken 🎉",
       incompleteProfileMessage: "U hebt uw profiel nog niet voltooid.",
       cannotUseTipaw: "En kunt Tipaw niet voor 100% gebruiken.",
-      announcements: "Mededelingen van TIPAW",
       loginReminder: "Inloggen om de applicatie te gebruiken",
       pets: petSpecies.nl,
       genres: genders.nl,
@@ -167,6 +172,10 @@ export const resources = {
       numberOfPuppies: "Aantal puppy's",
       birthdayOfLitter: "Geboortedatum van het nest",
       uploadingPhotos: "Foto's van uw huisdier uploaden",
+      completeProfile:
+        "Voltooi het profiel van uw huisdier voor 100% en krijg toegang tot nuttige tips over de verzorging en opvoeding van uw huisdier hier",
+      announcements: "Mededelingen van TIPAW",
+      announcementList: announcements.nl,
     },
   },
 };
