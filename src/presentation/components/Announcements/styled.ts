@@ -4,16 +4,15 @@ interface ContentWrapperProps {
   expanded: boolean;
 }
 
-export const AnnouncementsContainer = styled.div`
+export const Container = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 40px;
-  gap: 32px;
+  gap: 24px;
   border: 1px solid ${({ theme }) => theme.color.light.shadeLighter};
 `;
 
-export const Wrapper = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
@@ -23,7 +22,7 @@ export const Title = styled.h3`
   color: ${({ theme }) => theme.color.blue.default};
   font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 2;
 `;
 
 export const Dot = styled.div`
@@ -33,7 +32,7 @@ export const Dot = styled.div`
   background-color: ${({ theme }) => theme.color.red.default};
 `;
 
-export const AnnouncementContainer = styled.div`
+export const ArticleWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -47,7 +46,7 @@ export const ContentWrapper = styled.div<ContentWrapperProps>`
   max-height: ${({ expanded }) => (expanded ? "1000px" : "0")};
 `;
 
-export const Header = styled.div`
+export const ArticleHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 12px 24px;
@@ -55,7 +54,7 @@ export const Header = styled.div`
   border-radius: 8px 8px 0px 0px;
 `;
 
-export const HeaderTitle = styled.h4`
+export const ArticleTitle = styled.h4`
   color: ${({ theme }) => theme.color.light.default};
   font-size: 16px;
   font-weight: 700;
@@ -67,7 +66,7 @@ export const ChevronButton = styled.button``;
 export const Date = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 16px 24px;
 `;
 
@@ -87,5 +86,17 @@ export const Content = styled.p`
 
   @media screen and (max-width: 425px) {
     font-size: 14px;
+  }
+`;
+
+export const NotFullProgress = styled.h2`
+  color: ${({ theme }) => theme.color.purple.default};
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @media screen and (max-width: 425px) {
+    font-size: 16px;
   }
 `;
