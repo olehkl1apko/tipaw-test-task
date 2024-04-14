@@ -7,7 +7,7 @@ import { loginUser } from "./api/loginUser";
 import { useUserContext } from "./context";
 import { Error, LoadingFallback } from "../presentation/components";
 const HomePage = lazy(() => import("../presentation/pages/HomePage"));
-const Profile = lazy(() => import("../presentation/pages/Profile"));
+const ProfilePage = lazy(() => import("../presentation/pages/ProfilePage"));
 
 export const AppController: FC = () => {
   const { user } = useAuth0();
@@ -48,7 +48,7 @@ export const AppController: FC = () => {
         },
         {
           path: "/profile",
-          element: <Profile />,
+          element: <ProfilePage />,
         },
       ],
     },

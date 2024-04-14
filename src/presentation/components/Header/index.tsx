@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import * as Styled from "./styled";
 import UserInfo from "./UserInfo";
-import { LoginBtn } from "../LoginBtn";
+import LoginBtn from "../LoginBtn";
 
 const Header: FC = () => {
   const theme = useTheme();

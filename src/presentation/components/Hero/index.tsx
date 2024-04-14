@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import * as Styled from "./styled";
 import ProgressBars from "./ProgressBars";
-import { useUserContext } from "../../../application/context";
 import ProgressCard from "./ProgressCard";
+import { useUserContext } from "../../../application/context";
 import { IProgressList } from "../../modules";
 import { progressCardList } from "../../helpers";
 

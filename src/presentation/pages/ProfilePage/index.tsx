@@ -1,7 +1,7 @@
 import { ProfileForms } from "../../components";
 
-const Profile = () => {
+const ProfilePage = () => {
   return <ProfileForms />;
 };
 
-export default Profile;
+export default ProfilePage;

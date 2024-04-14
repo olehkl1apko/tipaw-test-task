@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import styled from "@emotion/styled";
 import { FC, Suspense } from "react";
 
-import Header from "./Header/Header";
+import Header from "./Header";
 import LoadingFallback from "./LoadingFallback";
 
 export const Container = styled.div`
